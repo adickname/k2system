@@ -21,7 +21,9 @@ onUnmounted(() => {
       <OffertHome> Sprzedaż detaliczna </OffertHome>
       <OffertHome> Dzierżawa kserokopiarek </OffertHome>
       <OffertHome> Serwis części Tonery </OffertHome>
-      <OffertHome> Hurtownia współpraca z dystrybutorami </OffertHome>
+      <OffertHome class="mb-2">
+        Hurtownia współpraca z dystrybutorami
+      </OffertHome>
       <h1>Drukarki i Kserokopiarki dla firm</h1>
       <ImageBorder>
         <p>Łatwa obsługa</p>
@@ -66,6 +68,14 @@ onUnmounted(() => {
   </template>
 
   <template v-else>
+    <div class="flex">
+      <OffertHome> Sprzedaż detaliczna </OffertHome>
+      <OffertHome> Dzierżawa kserokopiarek </OffertHome>
+      <OffertHome> Serwis części Tonery </OffertHome>
+      <OffertHome class="mb-2">
+        Hurtownia współpraca z dystrybutorami
+      </OffertHome>
+    </div>
     <div
       class="!grid w-[70%] mx-auto grid-rows-[auto,auto,auto,auto] grid-cols-2"
     >
