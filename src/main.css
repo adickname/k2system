@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/* @layer base {
+  body {
+    background-color: red;
+    box-sizing: border-box;
+    max-width: 100vw;
+    width: 100vw;
+  }
+}
+ */
