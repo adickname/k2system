@@ -1,9 +1,12 @@
-<script setup></script>
+<script setup>
+import GoogleMap from "./GoogleMap.vue";
+</script>
 
 <template>
+  <GoogleMap class="w-full"></GoogleMap>
   <footer>
     <div class="bg-black p-2">
-      <p class="text-center">Adres: Spółdzielcza 2 43-400 Cieszyn</p>
+      <p class="text-center">Adres: Spółdzielcza 2, 43-400 Cieszyn</p>
       <p class="text-center">Nip: 5482751226</p>
       <p class="text-center">
         Email:

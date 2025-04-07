@@ -1,5 +1,8 @@
-<template>
-  <div></div>
-</template>
+<script setup>
+import OfferMarquee from "@/components/OfferMarquee.vue";
+</script>
 
-<script setup></script>
+<template>
+  <h1><p class="text-center">Tym się zajmujemy:</p></h1>
+  <OfferMarquee></OfferMarquee>
+</template>
