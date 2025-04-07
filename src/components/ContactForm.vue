@@ -9,22 +9,24 @@ const topic = ref(null);
 const message = ref(null);
 </script>
 <template>
-  <div class="mx-auto">
-    <h1>KONTAKT</h1>
+  <div class="lg:mx-auto mx-4">
+    <div class="flex justify-center py-2">
+      <h1>KONTAKT</h1>
+    </div>
     <form action="">
-      <FloatLabel class="my-4 w-[40%]">
+      <FloatLabel class="my-4 w-full">
         <InputText id="name" v-model="name" class="w-full" />
         <label for="name">Imię</label>
       </FloatLabel>
-      <FloatLabel class="my-4 w-[40%]">
+      <FloatLabel class="my-4 w-full">
         <InputText id="userEmail" v-model="userEmail" class="w-full" />
         <label for="userEmail">E-mail</label>
       </FloatLabel>
-      <FloatLabel class="my-4 w-[40%]">
+      <FloatLabel class="my-4 w-full">
         <InputText id="topic" v-model="topic" class="w-full" />
         <label for="topic">Temat</label>
       </FloatLabel>
-      <FloatLabel class="my-4 w-[40%]">
+      <FloatLabel class="my-4 w-full">
         <Textarea id="message" v-model="message" class="w-full" />
         <label for="message">Wiadomość</label>
       </FloatLabel>
