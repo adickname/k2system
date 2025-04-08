@@ -4,10 +4,12 @@ import Accordion from "primevue/accordion";
 import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
+import ImageBorder from "@/components/ImageBorder.vue";
 </script>
 <template>
-  <div>
-    <ProductDetails>
+  <div class="md:grid md:grid-cols-2 lg:grid-cols-4 lg:mx-8">
+    <!--Example View after click -->
+    <!--     <ProductDetails>
       <template #image>
         <img src="/public/assets/4020_edited.avif" />
       </template>
@@ -118,6 +120,79 @@ import AccordionContent from "primevue/accordioncontent";
           </AccordionPanel></Accordion
         >
       </template>
-    </ProductDetails>
+    </ProductDetails> -->
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>
+        Kserokopiarka Bizhub C454e - Konica Minolta Color dkowkdowod fefkowfkwo
+        Color
+      </p>
+      <p>3 04389, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
+    <ImageBorder>
+      <img src="/public/assets/c550i.avif" alt="" />
+      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
+      <p>3 089, 00 zł</p>
+    </ImageBorder>
   </div>
 </template>
