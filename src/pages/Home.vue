@@ -68,18 +68,16 @@ onUnmounted(() => {
   </template>
 
   <template v-else>
-    <div class="flex">
+    <div class="!grid grid-cols-4 animate-fall">
       <OffertHome> Sprzedaż detaliczna </OffertHome>
       <OffertHome> Dzierżawa kserokopiarek </OffertHome>
       <OffertHome> Serwis części Tonery </OffertHome>
-      <OffertHome class="mb-2">
-        Hurtownia współpraca z dystrybutorami
-      </OffertHome>
+      <OffertHome class=""> Hurtownia współpraca z dystrybutorami </OffertHome>
     </div>
     <div
-      class="!grid w-[70%] mx-auto grid-rows-[auto,auto,auto,auto] grid-cols-2"
+      class="!grid w-[60%] mx-auto grid-rows-[repeat(auto-fit,_minmax(0,1fr))] grid-cols-2 gap-4"
     >
-      <ImageBorder class="col-start-1">
+      <ImageBorder class="animate-coming-left">
         <h1 class="text-xl">Drukarki i Kserokopiarki dla firm</h1>
         <p>Łatwa obsługa</p>
         <p>Niskie koszty eksploatacji</p>
@@ -87,7 +85,7 @@ onUnmounted(() => {
         <p>Szybka praca</p>
         <img class="p-2" src="/public/assets/ekran4020.avif" alt="" />
       </ImageBorder>
-      <ImageBorder class="col-start-2">
+      <ImageBorder class="animate-coming-right">
         <h2 class="text-xl">Konica Minolta Bizhub</h2>
         <iframe
           class="w-full h-full"
@@ -99,25 +97,25 @@ onUnmounted(() => {
           allowfullscreen
         ></iframe>
       </ImageBorder>
-      <h3 class="col-span-2 flex justify-center text-xl">
+      <h3 class="col-span-2 flex justify-center text-xl animate-expand-text">
         Jakie są twoje wymagania?
       </h3>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-left">
         <p>Urządzenia zapewniające wydruk w kolorze w formacie A4</p>
         <img src="/public/assets/C3350_edited.avif" alt="" />
       </ImageBorder>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-right">
         <p>
           Monochromatyczne urządzenia drukujące tylko w czarnym kolorze w
           formacie A4
         </p>
         <img src="/public/assets/4020_edited.avif" alt=""
       /></ImageBorder>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-left">
         <p>Urządzenia Mono lub kolor, drukujące w formacie A3</p>
         <img src="/public/assets/c250i_edited.avif" alt=""
       /></ImageBorder>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-right">
         <p>Dowolna konfiguracja o rozszerzone moduły</p>
         <img src="/public/assets/c750i_edited.avif" alt=""
       /></ImageBorder>
