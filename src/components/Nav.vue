@@ -18,7 +18,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="">
+  <div class="sticky top-0 z-10">
     <MenuMobile v-if="isMobile" />
     <MenuDesktop v-else />
   </div>

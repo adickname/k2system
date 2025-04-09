@@ -30,7 +30,11 @@ onUnmounted(() => {
         <p>Niskie koszty eksploatacji</p>
         <p>Japońska niezawodność</p>
         <p>Szybka praca</p>
-        <img class="p-2" src="/public/assets/ekran4020.avif" alt=""
+        <img
+          loading="lazy"
+          class="p-2"
+          src="/public/assets/ekran4020.avif"
+          alt=""
       /></ImageBorder>
       <h2>Konica Minolta Bizhub</h2>
       <ImageBorder>
@@ -47,22 +51,22 @@ onUnmounted(() => {
       <h3>Jakie są twoje wymagania?</h3>
       <ImageBorder>
         <p>Urządzenia zapewniające wydruk w kolorze w formacie A4</p>
-        <img src="/public/assets/C3350_edited.avif" alt="" />
+        <img loading="lazy" src="/public/assets/C3350_edited.avif" alt="" />
       </ImageBorder>
       <ImageBorder>
         <p>
           Monochromatyczne urządzenia drukujące tylko w czarnym kolorze w
           formacie A4
         </p>
-        <img src="/public/assets/4020_edited.avif" alt="" />
+        <img loading="lazy" src="/public/assets/4020_edited.avif" alt="" />
       </ImageBorder>
       <ImageBorder>
         <p>Urządzenia Mono lub kolor, drukujące w formacie A3</p>
-        <img src="/public/assets/c250i_edited.avif" alt="" />
+        <img loading="lazy" src="/public/assets/c250i_edited.avif" alt="" />
       </ImageBorder>
       <ImageBorder>
         <p>Dowolna konfiguracja o rozszerzone moduły</p>
-        <img src="/public/assets/c750i_edited.avif" alt="" />
+        <img loading="lazy" src="/public/assets/c750i_edited.avif" alt="" />
       </ImageBorder>
     </div>
   </template>
@@ -83,7 +87,12 @@ onUnmounted(() => {
         <p>Niskie koszty eksploatacji</p>
         <p>Japońska niezawodność</p>
         <p>Szybka praca</p>
-        <img class="p-2" src="/public/assets/ekran4020.avif" alt="" />
+        <img
+          loading="lazy"
+          class="p-2"
+          src="/public/assets/ekran4020.avif"
+          alt=""
+        />
       </ImageBorder>
       <ImageBorder class="animate-coming-right">
         <h2 class="text-xl">Konica Minolta Bizhub</h2>
@@ -102,22 +111,22 @@ onUnmounted(() => {
       </h3>
       <ImageBorder class="animate-coming-left">
         <p>Urządzenia zapewniające wydruk w kolorze w formacie A4</p>
-        <img src="/public/assets/C3350_edited.avif" alt="" />
+        <img loading="lazy" src="/public/assets/C3350_edited.avif" alt="" />
       </ImageBorder>
       <ImageBorder class="animate-coming-right">
         <p>
           Monochromatyczne urządzenia drukujące tylko w czarnym kolorze w
           formacie A4
         </p>
-        <img src="/public/assets/4020_edited.avif" alt=""
+        <img loading="lazy" src="/public/assets/4020_edited.avif" alt=""
       /></ImageBorder>
       <ImageBorder class="animate-coming-left">
         <p>Urządzenia Mono lub kolor, drukujące w formacie A3</p>
-        <img src="/public/assets/c250i_edited.avif" alt=""
+        <img loading="lazy" src="/public/assets/c250i_edited.avif" alt=""
       /></ImageBorder>
       <ImageBorder class="animate-coming-right">
         <p>Dowolna konfiguracja o rozszerzone moduły</p>
-        <img src="/public/assets/c750i_edited.avif" alt=""
+        <img loading="lazy" src="/public/assets/c750i_edited.avif" alt=""
       /></ImageBorder>
     </div>
   </template>
