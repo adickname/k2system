@@ -2,9 +2,57 @@
 
 @tailwind utilities;
 
+@theme {
+  --animate-coming-left: coming-left 1.2s ease-out forwards;
+  --animate-coming-right: coming-right 1.2s ease-out forwards;
+  --animate-fall: fall 1.2s ease-out forwards;
+
+  @keyframes coming-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes coming-right {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fall {
+    0% {
+      opacity: .6;
+      transform: translateY(-100%);
+    }
+    70%{
+      transform: translateY(10%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  /*   .animate-coming-left {
+    animation: coming-left 1.7s ease-out forwards;
+  }
+
+  .animate-coming-right {
+    animation: coming-right 1.7s ease-out forwards;
+  } */
+}
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
-

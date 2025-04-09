@@ -24,7 +24,7 @@ onUnmounted(() => {
   <div class="flex justify-center p-2 items-center">
     <VerifyLocation></VerifyLocation>
   </div>
-  <div>
+  <div class="animate-fall">
     <img
       src="/public/assets/about-image.avif"
       alt="about image"
@@ -32,8 +32,8 @@ onUnmounted(() => {
     />
   </div>
   <div class="lg:flex">
-    <div class="lg:w-1/2 p-4">
-      <p class="text-lg font-semibold lg:text-left">Czym zajmuje się firma?</p>
+    <div class="lg:w-1/2 p-4 animate-coming-left">
+      <p class="text-lg font-semibold text-left">Czym zajmuje się firma?</p>
       <p class="lg:text-left">
         Firma zajmuje się dystrybucją, serwisem oraz dzierżawą poleasingowych, a
         także nowych urządzeń biurowych. K2system jako bezpośredni importer
@@ -44,17 +44,19 @@ onUnmounted(() => {
         współpracę z dystrybutorami oraz lokalnymi serwisami.
       </p>
     </div>
-    <div class="flex lg:justify-center bg-white lg:w-1/2">
+    <div class="flex lg:justify-center bg-white lg:w-1/2 animate-coming-right">
       <img src="/public/assets/kopiarkaA3.avif" />
     </div>
   </div>
   <!--conditional rendering-->
   <div v-if="!isMobile">
     <div class="lg:flex w-full">
-      <div class="lg:flex lg:justify-center bg-white lg:w-1/2">
+      <div
+        class="lg:flex lg:justify-center bg-white lg:w-1/2 animate-coming-left"
+      >
         <img src="/public/assets/kopiarkaA4.avif" />
       </div>
-      <div class="lg:w-1/2 p-4">
+      <div class="lg:w-1/2 p-4 animate-coming-right">
         <p class="text-lg font-semibold lg:text-right">
           Dlaczego Konica Minolta?
         </p>
