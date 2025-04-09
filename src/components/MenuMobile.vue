@@ -13,11 +13,12 @@ const toggle = () => {
 
 <template>
   <div>
-    <div class="flex p-2 bg-[#03045e]">
+    <div class="flex justify-between items-center p-2 bg-[#03045e]">
       <Button v-if="!showMenu" icon="pi pi-align-justify" @click="toggle">
       </Button>
       <Button v-else icon="pi pi-times" @click="toggle"> </Button>
       <img src="/public/assets/logo.png" alt="logo" class="mx-2" />
+      <i class="pi pi-shopping-cart cursor-pointer px-2"></i>
     </div>
     <Menu
       v-if="showMenu"

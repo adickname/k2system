@@ -32,6 +32,11 @@ const router = createRouter({
       component: () => import("./pages/Contact.vue"),
       name: "contact",
     },
+    {
+      path: "/cart",
+      component: () => import("./pages/Cart.vue"),
+      name: "cart",
+    },
   ],
   history: createWebHistory(),
 });

@@ -11,7 +11,7 @@ import ImageBorder from "@/components/ImageBorder.vue";
     <!--Example View after click -->
     <!--     <ProductDetails>
       <template #image>
-        <img src="/public/assets/4020_edited.avif" />
+        <img loading="lazy" src="/public/assets/4020_edited.avif" />
       </template>
       <template #name>
         <p>Kopiarka Bizhub 367 Konica Minolta Mono</p>
@@ -123,13 +123,13 @@ import ImageBorder from "@/components/ImageBorder.vue";
     </ProductDetails> -->
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>
         Kserokopiarka Bizhub C454e - Konica Minolta Color dkowkdowod fefkowfkwo
         Color
@@ -138,59 +138,59 @@ import ImageBorder from "@/components/ImageBorder.vue";
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
 
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
     <ImageBorder>
-      <img src="/public/assets/c550i.avif" alt="" />
+      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
       <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
       <p>3 089, 00 zł</p>
     </ImageBorder>
