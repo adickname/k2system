@@ -18,7 +18,7 @@ onUnmounted(() => {
 </script>
 <template>
   <div class="flex justify-center">
-    <p class="p-1 lg:p-4">Tutaj nas znajdziesz:</p>
+    <p class="p-1 lg:p-4 animate-expand-text">Tutaj nas znajdziesz:</p>
   </div>
   <LocationMarquee></LocationMarquee>
   <div class="flex justify-center p-2 items-center">

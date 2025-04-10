@@ -7,7 +7,7 @@ import AccordionContent from "primevue/accordioncontent";
 import ImageBorder from "@/components/ImageBorder.vue";
 </script>
 <template>
-  <div class="md:grid md:grid-cols-2 lg:grid-cols-4 lg:mx-8">
+  <div class="md:grid md:grid-cols-2 lg:grid-cols-4 lg:mx-8 animate-fall">
     <!--Example View after click -->
     <!--     <ProductDetails>
       <template #image>

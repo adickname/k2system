@@ -10,10 +10,7 @@ const message = ref(null);
 </script>
 <template>
   <div class="lg:mx-auto mx-4">
-    <div class="flex justify-center py-2">
-      <h1>KONTAKT</h1>
-    </div>
-    <form action="">
+    <form>
       <FloatLabel class="my-4 w-full">
         <InputText id="name" v-model="name" class="w-full" />
         <label for="name">Imię</label>

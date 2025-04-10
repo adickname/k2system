@@ -18,14 +18,16 @@ onUnmounted(() => {
 <template>
   <template v-if="isMobile">
     <div class="min-h-screen w-full flex flex-col items-center">
-      <OffertHome> Sprzedaż detaliczna </OffertHome>
-      <OffertHome> Dzierżawa kserokopiarek </OffertHome>
-      <OffertHome> Serwis części Tonery </OffertHome>
-      <OffertHome class="mb-2">
-        Hurtownia współpraca z dystrybutorami
-      </OffertHome>
-      <h1>Drukarki i Kserokopiarki dla firm</h1>
-      <ImageBorder>
+      <div class="animate-fall w-full">
+        <OffertHome> Sprzedaż detaliczna </OffertHome>
+        <OffertHome> Dzierżawa kserokopiarek </OffertHome>
+        <OffertHome> Serwis części Tonery </OffertHome>
+        <OffertHome class="mb-2">
+          Hurtownia współpraca z dystrybutorami
+        </OffertHome>
+      </div>
+      <h1 class="animate-expand-text">Drukarki i Kserokopiarki dla firm</h1>
+      <ImageBorder class="animate-coming-left">
         <p>Łatwa obsługa</p>
         <p>Niskie koszty eksploatacji</p>
         <p>Japońska niezawodność</p>
@@ -36,8 +38,8 @@ onUnmounted(() => {
           src="/public/assets/ekran4020.avif"
           alt=""
       /></ImageBorder>
-      <h2>Konica Minolta Bizhub</h2>
-      <ImageBorder>
+      <h2 class="animate-expand-text">Konica Minolta Bizhub</h2>
+      <ImageBorder class="animate-coming-right">
         <iframe
           class="w-full"
           src="https://www.youtube.com/embed/ux3_7U4Nb-U?si=Wn2kyXiZ_zSP7Po_&amp;controls=0"
@@ -48,23 +50,23 @@ onUnmounted(() => {
           allowfullscreen
         ></iframe>
       </ImageBorder>
-      <h3>Jakie są twoje wymagania?</h3>
-      <ImageBorder>
+      <h3 class="animate-expand-text">Jakie są twoje wymagania?</h3>
+      <ImageBorder class="animate-coming-left">
         <p>Urządzenia zapewniające wydruk w kolorze w formacie A4</p>
         <img loading="lazy" src="/public/assets/C3350_edited.avif" alt="" />
       </ImageBorder>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-right">
         <p>
           Monochromatyczne urządzenia drukujące tylko w czarnym kolorze w
           formacie A4
         </p>
         <img loading="lazy" src="/public/assets/4020_edited.avif" alt="" />
       </ImageBorder>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-left">
         <p>Urządzenia Mono lub kolor, drukujące w formacie A3</p>
         <img loading="lazy" src="/public/assets/c250i_edited.avif" alt="" />
       </ImageBorder>
-      <ImageBorder>
+      <ImageBorder class="animate-coming-right">
         <p>Dowolna konfiguracja o rozszerzone moduły</p>
         <img loading="lazy" src="/public/assets/c750i_edited.avif" alt="" />
       </ImageBorder>
