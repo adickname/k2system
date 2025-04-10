@@ -33,15 +33,14 @@ onUnmounted(() => {
         <p>Japońska niezawodność</p>
         <p>Szybka praca</p>
         <img
-          loading="lazy"
-          class="p-2"
+          class="p-2 max-w-full h-auto"
           src="/public/assets/ekran4020.avif"
           alt=""
       /></ImageBorder>
       <h2 class="animate-expand-text">Konica Minolta Bizhub</h2>
       <ImageBorder class="animate-coming-right">
         <iframe
-          class="w-full"
+          class="w-full h-full"
           src="https://www.youtube.com/embed/ux3_7U4Nb-U?si=Wn2kyXiZ_zSP7Po_&amp;controls=0"
           title="YouTube video player"
           frameborder="0"
@@ -53,7 +52,12 @@ onUnmounted(() => {
       <h3 class="animate-expand-text">Jakie są twoje wymagania?</h3>
       <ImageBorder class="animate-coming-left">
         <p>Urządzenia zapewniające wydruk w kolorze w formacie A4</p>
-        <img loading="lazy" src="/public/assets/C3350_edited.avif" alt="" />
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/C3350_edited.avif"
+          alt=""
+        />
       </ImageBorder>
       <ImageBorder class="animate-coming-right">
         <p>
@@ -64,11 +68,21 @@ onUnmounted(() => {
       </ImageBorder>
       <ImageBorder class="animate-coming-left">
         <p>Urządzenia Mono lub kolor, drukujące w formacie A3</p>
-        <img loading="lazy" src="/public/assets/c250i_edited.avif" alt="" />
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/c250i_edited.avif"
+          alt=""
+        />
       </ImageBorder>
       <ImageBorder class="animate-coming-right">
         <p>Dowolna konfiguracja o rozszerzone moduły</p>
-        <img loading="lazy" src="/public/assets/c750i_edited.avif" alt="" />
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/c750i_edited.avif"
+          alt=""
+        />
       </ImageBorder>
     </div>
   </template>
@@ -90,8 +104,7 @@ onUnmounted(() => {
         <p>Japońska niezawodność</p>
         <p>Szybka praca</p>
         <img
-          loading="lazy"
-          class="p-2"
+          class="p-2 max-w-full h-auto"
           src="/public/assets/ekran4020.avif"
           alt=""
         />
@@ -99,7 +112,7 @@ onUnmounted(() => {
       <ImageBorder class="animate-coming-right">
         <h2 class="text-xl">Konica Minolta Bizhub</h2>
         <iframe
-          class="w-full h-full"
+          class="p-2 w-full h-full"
           src="https://www.youtube.com/embed/ux3_7U4Nb-U?si=Wn2kyXiZ_zSP7Po_&amp;controls=0"
           title="YouTube video player"
           frameborder="0"
@@ -113,22 +126,39 @@ onUnmounted(() => {
       </h3>
       <ImageBorder class="animate-coming-left">
         <p>Urządzenia zapewniające wydruk w kolorze w formacie A4</p>
-        <img loading="lazy" src="/public/assets/C3350_edited.avif" alt="" />
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/C3350_edited.avif"
+          alt=""
+        />
       </ImageBorder>
       <ImageBorder class="animate-coming-right">
         <p>
           Monochromatyczne urządzenia drukujące tylko w czarnym kolorze w
           formacie A4
         </p>
-        <img loading="lazy" src="/public/assets/4020_edited.avif" alt=""
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/4020_edited.avif"
+          alt=""
       /></ImageBorder>
       <ImageBorder class="animate-coming-left">
         <p>Urządzenia Mono lub kolor, drukujące w formacie A3</p>
-        <img loading="lazy" src="/public/assets/c250i_edited.avif" alt=""
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/c250i_edited.avif"
+          alt=""
       /></ImageBorder>
       <ImageBorder class="animate-coming-right">
         <p>Dowolna konfiguracja o rozszerzone moduły</p>
-        <img loading="lazy" src="/public/assets/c750i_edited.avif" alt=""
+        <img
+          loading="lazy"
+          class="p-2 max-w-full h-auto"
+          src="/public/assets/c750i_edited.avif"
+          alt=""
       /></ImageBorder>
     </div>
   </template>

@@ -14,9 +14,15 @@ const toggle = () => {
 <template>
   <div>
     <div class="flex items-center p-2 bg-[#03045e]">
-      <Button v-if="!showMenu" icon="pi pi-align-justify" @click="toggle">
+      <Button
+        v-if="!showMenu"
+        icon="pi pi-align-justify"
+        @click="toggle"
+        title="open-menu"
+      >
       </Button>
-      <Button v-else icon="pi pi-times" @click="toggle"> </Button>
+      <Button v-else icon="pi pi-times" @click="toggle" title="close-menu">
+      </Button>
       <img src="/public/assets/logo.png" alt="logo" class="mx-2" />
     </div>
     <Menu
@@ -42,7 +48,7 @@ const toggle = () => {
           :to="item.route"
           class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
         >
-          <i class="pi pi-shopping-cart cursor-pointer px-2"></i>
+          <i class="pi pi-shopping-cart cursor-pointer px-2" title="cart"></i>
         </router-link>
       </template>
     </Menu>

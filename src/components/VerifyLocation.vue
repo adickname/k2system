@@ -39,6 +39,7 @@ const check = () => {
     </p>
     <div class="card flex justify-center">
       <AutoComplete
+        placeholder="miejscowosc"
         v-model="value"
         :suggestions="locations"
         @complete="search"

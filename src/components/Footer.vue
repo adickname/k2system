@@ -3,8 +3,8 @@ import GoogleMap from "./GoogleMap.vue";
 </script>
 
 <template>
-  <GoogleMap class="w-full"></GoogleMap>
   <footer>
+    <GoogleMap class="w-full h-[450px]"></GoogleMap>
     <div class="bg-black p-2">
       <p class="text-center">Adres: Spółdzielcza 2, 43-400 Cieszyn</p>
       <p class="text-center">Nip: 5482751226</p>

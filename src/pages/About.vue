@@ -28,7 +28,7 @@ onUnmounted(() => {
     <img
       src="/public/assets/about-image.avif"
       alt="about image"
-      class="w-full"
+      class="w-full h-auto"
     />
   </div>
   <div class="lg:flex">
@@ -45,16 +45,24 @@ onUnmounted(() => {
       </p>
     </div>
     <div class="flex lg:justify-center bg-white lg:w-1/2 animate-coming-right">
-      <img src="/public/assets/kopiarkaA3.avif" />
+      <img
+        src="/public/assets/kopiarkaA3.avif"
+        alt=""
+        class="max-w-full h-auto"
+      />
     </div>
   </div>
-  <!--conditional rendering-->
+
   <div v-if="!isMobile">
     <div class="lg:flex w-full">
       <div
         class="lg:flex lg:justify-center bg-white lg:w-1/2 animate-coming-left"
       >
-        <img src="/public/assets/kopiarkaA4.avif" />
+        <img
+          src="/public/assets/kopiarkaA4.avif"
+          alt=""
+          class="max-w-full h-auto"
+        />
       </div>
       <div class="lg:w-1/2 p-4 animate-coming-right">
         <p class="text-lg font-semibold lg:text-right">
@@ -83,7 +91,12 @@ onUnmounted(() => {
     </div>
     <div class="lg:flex w-full">
       <div class="lg:flex lg:justify-center bg-white lg:w-1/2">
-        <img src="/public/assets/kopiarkaA4.avif" />
+        <img
+          src="/public/assets/kopiarkaA4.avif"
+          alt=""
+          class="max-w-full h-auto"
+          loading="lazy"
+        />
       </div>
     </div>
   </div>
