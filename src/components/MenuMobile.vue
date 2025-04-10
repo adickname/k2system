@@ -13,12 +13,11 @@ const toggle = () => {
 
 <template>
   <div>
-    <div class="flex justify-between items-center p-2 bg-[#03045e]">
+    <div class="flex items-center p-2 bg-[#03045e]">
       <Button v-if="!showMenu" icon="pi pi-align-justify" @click="toggle">
       </Button>
       <Button v-else icon="pi pi-times" @click="toggle"> </Button>
       <img src="/public/assets/logo.png" alt="logo" class="mx-2" />
-      <i class="pi pi-shopping-cart cursor-pointer px-2"></i>
     </div>
     <Menu
       v-if="showMenu"
@@ -30,12 +29,20 @@ const toggle = () => {
     >
       <template #item="{ item, props }">
         <router-link
-          v-if="item.route"
+          v-if="item.route !== 'cart'"
           :to="item.route"
           class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
           @click="toggle"
         >
           <span class="ml-2">{{ item.label }}</span>
+        </router-link>
+        <router-link
+          v-else
+          @click="toggle"
+          :to="item.route"
+          class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
+        >
+          <i class="pi pi-shopping-cart cursor-pointer px-2"></i>
         </router-link>
       </template>
     </Menu>
