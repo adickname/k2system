@@ -44,8 +44,10 @@ import { items } from "@/data/menu";
             item.label
           }}</span>
         </router-link>
+        <router-link v-else :to="item.route">
+          <i class="pi pi-shopping-cart px-4"></i>
+        </router-link>
       </template>
     </Menu>
-    <i class="pi pi-shopping-cart px-4"></i>
   </div>
 </template>

@@ -25,4 +25,7 @@ export const items = ref([
     label: "Kontakt",
     route: "contact",
   },
+  {
+    route: "cart",
+  },
 ]);

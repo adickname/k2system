@@ -2,7 +2,6 @@
 import { RouterView } from "vue-router";
 import Nav from "./components/Nav.vue";
 import Footer from "./components/Footer.vue";
-import CartPreview from "./components/CartPreview.vue";
 </script>
 
 <template>
@@ -10,13 +9,10 @@ import CartPreview from "./components/CartPreview.vue";
     class="bg-[#023e8a] text-[#48cae4] min-h-screen max-w-screen w-screen flex flex-col"
   >
     <Nav />
-    <div class="flex-1 flex">
+    <div class="flex-1">
       <main>
         <RouterView> </RouterView>
       </main>
-      <aside>
-        <CartPreview></CartPreview>
-      </aside>
     </div>
     <Footer />
   </div>
