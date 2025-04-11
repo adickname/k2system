@@ -11,9 +11,11 @@ import AccordionContent from "primevue/accordioncontent";
 </script>
 <template>
   <div class="lg:flex justify-center">
-    <div>
+    <section>
       <h1>Mój koszyk</h1>
-      <CartItem></CartItem>
+      <article>
+        <CartItem></CartItem>
+      </article>
       <Accordion>
         <AccordionPanel>
           <AccordionHeader>Wprowadź kod rabatowy</AccordionHeader>
@@ -34,8 +36,8 @@ import AccordionContent from "primevue/accordioncontent";
           </AccordionContent>
         </AccordionPanel>
       </Accordion>
-    </div>
-    <div class="lg:mx-4">
+    </section>
+    <section class="lg:mx-4">
       <h2>Podsumowanie zamówienia</h2>
       <div class="flex flex-row">
         <p class="flex-1">Razem</p>
@@ -44,6 +46,6 @@ import AccordionContent from "primevue/accordioncontent";
       <div>
         <Button label="Zamówienie" class="w-full"></Button>
       </div>
-    </div>
+    </section>
   </div>
 </template>

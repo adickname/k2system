@@ -14,6 +14,6 @@ import Footer from "./components/Footer.vue";
         <RouterView> </RouterView>
       </div>
     </main>
-    <Footer />
+    <Footer class="w-full" />
   </div>
 </template>
