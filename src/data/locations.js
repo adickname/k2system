@@ -7,7 +7,6 @@ export const locations = [
   "wisła",
   "istebna",
   "żory",
-  "istebna",
   "jastrzębie-zdrój",
   "czechowice-dziedzice",
   "tychy",

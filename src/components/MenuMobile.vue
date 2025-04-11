@@ -4,10 +4,15 @@ import Menu from "primevue/menu";
 import Button from "primevue/button";
 import { RouterLink } from "vue-router";
 import { items } from "@/data/menu";
+import { router } from "@/router";
 
 const showMenu = ref(false);
 const toggle = () => {
   showMenu.value = !showMenu.value;
+};
+const navigate = (itemRoute) => {
+  toggle();
+  router.push(itemRoute);
 };
 </script>
 
@@ -36,6 +41,8 @@ const toggle = () => {
       <template #item="{ item, props }">
         <router-link
           v-if="item.route !== 'cart'"
+          @keydown.enter="navigate(item.route)"
+          @keydown.space="navigate(item.route)"
           :to="item.route"
           class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
           @click="toggle"
@@ -44,6 +51,8 @@ const toggle = () => {
         </router-link>
         <router-link
           v-else
+          @keydown.enter="navigate(item.route)"
+          @keydown.space="navigate(item.route)"
           @click="toggle"
           :to="item.route"
           class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
