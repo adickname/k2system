@@ -10,22 +10,19 @@ import InputNumber from "primevue/inputnumber";
     <div class="sm:ml-4 mt-4 sm:mt-0 text-center sm:text-left">
       <p class="font-medium text-lg">Kopiarka Bizhub 367 Konica Minolta Mono</p>
       <p class="text-xl font-semibold">2 424,00 zł</p>
-      <InputNumber
-        v-model="value2"
-        inputId="minmax-buttons"
-        mode="decimal"
-        showButtons
-        :min="0"
-        :max="100"
-        fluid
-        class="mt-2"
-      />
-    </div>
-    <div
-      class="flex flex-col justify-center items-center sm:items-end mt-4 sm:mt-0"
-    >
-      <i class="pi pi-trash text-xl sm:text-2xl text-gray-600"></i>
-      <p class="font-semibold text-lg">43984</p>
+      <div class="flex items-center">
+        <InputNumber
+          v-model="value2"
+          inputId="minmax-buttons"
+          mode="decimal"
+          showButtons
+          :min="0"
+          :max="100"
+          fluid
+          class="mt-2"
+        />
+        <i class="pi pi-trash text-xl sm:text-2xl text-gray-600 px-2"></i>
+      </div>
     </div>
   </div>
 </template>
