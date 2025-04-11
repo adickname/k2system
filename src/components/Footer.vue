@@ -9,8 +9,6 @@ const route = useRoute();
 watch(
   () => route.name,
   (newPath, oldPath) => {
-    console.log(5);
-    console.log(newPath);
     triggerAnimation.value = false;
     setTimeout(() => {
       triggerAnimation.value = true;
