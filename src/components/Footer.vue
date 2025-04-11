@@ -4,10 +4,10 @@ import GoogleMap from "./GoogleMap.vue";
 
 <template>
   <footer>
-    <section>
+    <section class="animate-coming-left">
       <GoogleMap class="w-full h-[450px]"></GoogleMap>
     </section>
-    <section>
+    <section class="animate-coming-right">
       <div class="bg-black p-2 w-full">
         <p class="text-center">Adres: Spółdzielcza 2, 43-400 Cieszyn</p>
         <p class="text-center">Nip: 5482751226</p>
