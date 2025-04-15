@@ -37,6 +37,11 @@ const router = createRouter({
       component: () => import("./pages/Cart.vue"),
       name: "cart",
     },
+    {
+      path: "/admin",
+      component: () => import("@/pages/Admin.vue"),
+      name: "admin",
+    },
   ],
   history: createWebHistory(),
 });
