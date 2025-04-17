@@ -52,10 +52,10 @@ const getProducts = async () => {
   </div>
   <div v-for="product in products">
     <ProductCRUD
-    :name="product.name"
+      :name="product.name"
       :id="product.id"
       :cost="product.cost"
-      :image="product.img"
+      :image="product.image"
       :description="product.description"
     ></ProductCRUD>
   </div>

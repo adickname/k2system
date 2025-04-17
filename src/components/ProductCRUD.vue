@@ -3,10 +3,12 @@ import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
 import Button from "primevue/button";
 import Message from "primevue/message";
+import FileUpload from "primevue/fileupload";
 import { ref, watch, reactive } from "vue";
 import axios from "axios";
 const props = defineProps(["cost", "description", "image", "id", "name"]);
 const sendedCorrectly = ref(null);
+const selectedImage = ref(props.image);
 const local = reactive({ ...props });
 watch(
   props,
@@ -16,26 +18,32 @@ watch(
   { deep: true }
 );
 const updateProduct = async () => {
+  let imageRequest;
+  console.log(local.selectedImage);
+  console.log(local.image instanceof File);
+  if (local.image instanceof File === false) {
+    imageRequest = local.image.replace("http://localhost:8000/storage/", "");
+  } else {
+    imageRequest = local.image;
+  }
   try {
-    const response = await axios.put(
+    const formData = new FormData();
+    formData.append("_method", "PUT");
+    formData.append("name", local.name);
+    formData.append("cost", local.cost);
+    formData.append("description", local.description);
+    formData.append("image", imageRequest);
+    for (let [key, value] of formData.entries()) {
+      console.log(key + ": " + value);
+    }
+    const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
+      formData,
       {
-        cost: local.cost,
-        name: local.name,
-        description: local.description,
-        img: local.imagePath,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       }
     );
-    if (response.status === 201) {
-      local.name = null;
-      local.cost = null;
-      local.imagePath = null;
-      local.description = null;
+    if (response.status === 200) {
       sendedCorrectly.value = true;
     } else {
       sendedCorrectly.value = false;
@@ -47,6 +55,14 @@ const updateProduct = async () => {
 
 const resetSendedCorrectly = () => {
   sendedCorrectly.value = null;
+};
+
+const onFileSelect = (event) => {
+  local.image = event.files[0];
+};
+
+const removeFile = () => {
+  selectedImage.value = null;
 };
 
 const deleteProduct = async () => {
@@ -68,8 +84,21 @@ const deleteProduct = async () => {
   <div>
     <p>Name</p>
     <Textarea v-model="local.name" rows="5" cols="50" />
-    <p>Image Path</p>
-    <InputText v-model="local.imagePath"></InputText>
+    <p>Image</p>
+    <img :src="local.image" alt="" />
+    <FileUpload
+      @select="onFileSelect"
+      name="image"
+      :customUpload="true"
+      accept="image/*"
+      mode="basic"
+      auto
+      chooseLabel="Wybierz zdjęcie"
+    ></FileUpload>
+    <div v-if="selectedImage">
+      <p>Wybrane zdjęcie: {{ selectedImage.name }}</p>
+      <Button @click="removeFile">Usuń zdjęcie</Button>
+    </div>
     <p>Cena</p>
     <InputText v-model="local.cost"></InputText>
     <p>Opis</p>
