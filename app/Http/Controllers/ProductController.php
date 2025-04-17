@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -23,11 +24,16 @@ class ProductController extends Controller
     {
         $fields =  $request->validate([
             'name' => 'required',
-            'img' => 'nullable',
             'cost' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'image' => 'required|image'
         ]);
         $product = Product::create($fields);
+
+        $uploadedFile = $request->file('image');
+        $path = Storage::disk('local')->putFile('products', $uploadedFile);
+        $product->image = $path;
+        $product->save();
         return $product;
     }
 
@@ -46,9 +52,9 @@ class ProductController extends Controller
     {
         $fields =  $request->validate([
             'name' => 'required',
-            'img' => 'nullable',
+            'image' => 'nullable',
             'cost' => 'required',
-            'description' => 'required'
+            'description' => 'required|image'
         ]);
         $product->update($fields);
         return $product;

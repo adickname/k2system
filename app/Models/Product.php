@@ -10,10 +10,10 @@ class Product extends Model
     /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory;
     protected $attributes = [
-        'img' => null
+        'image' => null
     ];
     protected $fillable = [
-        'img',
+        'image',
         'name',
         'description',
         'cost'
