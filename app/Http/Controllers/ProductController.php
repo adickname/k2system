@@ -29,7 +29,7 @@ class ProductController extends Controller
             'name' => 'required',
             'cost' => 'required',
             'description' => 'required',
-            'image' => 'required|image'
+            'image' => 'required|mimes:jpeg,png,gif,bmp,webp,avif'
         ]);
         $product = Product::create($fields);
 
@@ -60,11 +60,20 @@ class ProductController extends Controller
             'image' => [
                 'required',
                 function ($attribute, $value, $fail) use ($request) {
+                    // Walidacja, czy image to plik
                     if ($request->hasFile('image')) {
                         if (!$request->file('image')->isValid()) {
                             $fail('Uploaded image is not valid.');
                         }
-                    } elseif (!is_string($value)) {
+                        // Sprawdź, czy plik jest jednym z dozwolonych formatów
+                        $allowedTypes = ['jpeg', 'png', 'gif', 'bmp', 'webp', 'avif'];
+                        $fileExtension = $request->file('image')->getClientOriginalExtension();
+                        if (!in_array($fileExtension, $allowedTypes)) {
+                            $fail('Invalid image type.');
+                        }
+                    }
+                    // Walidacja, czy image to ścieżka (string)
+                    elseif (!is_string($value)) {
                         $fail('Image must be a valid image path or an uploaded file.');
                     }
                 }
