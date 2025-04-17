@@ -13,8 +13,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        return Product::all();
+        $products = Product::all();
+        $products->each(function ($product) {
+            $product->image = asset('storage/' . $product->image);
+        });
+        return $products;
     }
 
     /**
@@ -31,7 +34,7 @@ class ProductController extends Controller
         $product = Product::create($fields);
 
         $uploadedFile = $request->file('image');
-        $path = Storage::disk('local')->putFile('products', $uploadedFile);
+        $path = Storage::disk('public')->putFile('products', $uploadedFile);
         $product->image = $path;
         $product->save();
         return $product;
@@ -52,11 +55,28 @@ class ProductController extends Controller
     {
         $fields =  $request->validate([
             'name' => 'required',
-            'image' => 'nullable',
             'cost' => 'required',
-            'description' => 'required|image'
+            'description' => 'required',
+            'image' => [
+                'required',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->hasFile('image')) {
+                        if (!$request->file('image')->isValid()) {
+                            $fail('Uploaded image is not valid.');
+                        }
+                    } elseif (!is_string($value)) {
+                        $fail('Image must be a valid image path or an uploaded file.');
+                    }
+                }
+            ]
         ]);
         $product->update($fields);
+        if ($request->hasFile('image')) {
+            $uploadedFile = $request->file('image');
+            $path = Storage::disk('public')->putFile('products', $uploadedFile);
+            $product->image = $path;
+        }
+        $product->save();
         return $product;
     }
 
