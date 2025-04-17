@@ -1,13 +1,31 @@
 <script setup>
+import { ref } from "vue";
 import ProductDetails from "@/components/ProductDetails.vue";
 import Accordion from "primevue/accordion";
 import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 import ImageBorder from "@/components/ImageBorder.vue";
+import axios from "axios";
+const products = ref();
+const getProducts = async () => {
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/products`
+    );
+    products.value = response.data;
+    console.log(response.data);
+  } catch (error) {}
+};
+getProducts();
 </script>
 <template>
   <div class="md:grid md:grid-cols-2 lg:grid-cols-4 lg:mx-8 animate-fall">
+    <ImageBorder v-for="product in products">
+      <img :src="product.image" alt="" />
+      <p>{{ product.name }}</p>
+      <p class="w-full">{{ product.cost }} zł</p>
+    </ImageBorder>
     <!--Example View after click -->
     <!--     <ProductDetails>
       <template #image>
@@ -121,78 +139,5 @@ import ImageBorder from "@/components/ImageBorder.vue";
         >
       </template>
     </ProductDetails> -->
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>
-        Kserokopiarka Bizhub C454e - Konica Minolta Color dkowkdowod fefkowfkwo
-        Color
-      </p>
-      <p>3 04389, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
-    <ImageBorder>
-      <img loading="lazy" src="/public/assets/c550i.avif" alt="" />
-      <p>Kserokopiarka Bizhub C454e - Konica Minolta Color</p>
-      <p>3 089, 00 zł</p>
-    </ImageBorder>
   </div>
 </template>

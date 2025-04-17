@@ -95,8 +95,8 @@ const deleteProduct = async () => {
       auto
       chooseLabel="Wybierz zdjęcie"
     ></FileUpload>
-    <div v-if="selectedImage">
-      <p>Wybrane zdjęcie: {{ selectedImage.name }}</p>
+    <div v-if="local.image">
+      <p>Wybrane zdjęcie: {{ local.image.name }}</p>
       <Button @click="removeFile">Usuń zdjęcie</Button>
     </div>
     <p>Cena</p>
