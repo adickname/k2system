@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
+
 
 class ProductController extends Controller
 {
@@ -32,11 +34,12 @@ class ProductController extends Controller
             'image' => 'required|mimes:jpeg,png,gif,bmp,webp,avif'
         ]);
         $product = Product::create($fields);
-
-        $uploadedFile = $request->file('image');
-        $path = Storage::disk('public')->putFile('products', $uploadedFile);
-        $product->image = $path;
-        $product->save();
+        if ($product) {
+            $uploadedFile = $request->file('image');
+            $path = Storage::disk('public')->putFile('products', $uploadedFile);
+            $product->image = $path;
+            $product->save();
+        }
         return $product;
     }
 
@@ -45,6 +48,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $product->image = asset('storage/' . $product->image);
         return $product;
     }
 
@@ -94,7 +98,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+        $delected =  $product->delete();
+        if ($delected) {
+        }
+
         return "Deleted";
     }
 }
