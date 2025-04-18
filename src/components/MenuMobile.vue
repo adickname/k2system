@@ -10,9 +10,9 @@ const showMenu = ref(false);
 const toggle = () => {
   showMenu.value = !showMenu.value;
 };
-const navigate = (itemRoute) => {
+const navigate = (itemName) => {
   toggle();
-  router.push(itemRoute);
+  router.push({ name: itemName });
 };
 </script>
 
@@ -41,9 +41,9 @@ const navigate = (itemRoute) => {
       <template #item="{ item, props }">
         <router-link
           v-if="item.route !== 'cart'"
-          @keydown.enter="navigate(item.route)"
-          @keydown.space="navigate(item.route)"
-          :to="item.route"
+          @keydown.enter="navigate(item.name)"
+          @keydown.space="navigate(item.name)"
+          :to="{ name: item.name }"
           class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
           @click="toggle"
         >
@@ -51,10 +51,10 @@ const navigate = (itemRoute) => {
         </router-link>
         <router-link
           v-else
-          @keydown.enter="navigate(item.route)"
-          @keydown.space="navigate(item.route)"
+          @keydown.enter="navigate(item.name)"
+          @keydown.space="navigate(item.name)"
           @click="toggle"
-          :to="item.route"
+          :to="{ name: item.name }"
           class="flex-1 bg-[#03045e] text-[#48cae4] flex items-center justify-center p-4 h-10 w-full"
         >
           <i class="pi pi-shopping-cart cursor-pointer px-2" title="cart"></i>

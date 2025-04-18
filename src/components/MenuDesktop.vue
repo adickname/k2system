@@ -3,8 +3,8 @@ import Menu from "primevue/menu";
 import { router } from "@/router";
 import { RouterLink } from "vue-router";
 import { items } from "@/data/menu";
-const navigate = (itemRoute) => {
-  router.push(itemRoute);
+const navigate = (itemName) => {
+  router.push({ name: itemName });
 };
 </script>
 
@@ -40,10 +40,10 @@ const navigate = (itemRoute) => {
     >
       <template #item="{ item, props }">
         <router-link
-          @keydown.enter="navigate(item.route)"
-          @keydown.space="navigate(item.route)"
+          @keydown.enter="navigate(item.name)"
+          @keydown.space="navigate(item.name)"
           v-if="item.route !== 'cart'"
-          :to="item.route"
+          :to="{ name: item.name }"
           class="text-[#48cae4] font-semibold bg-transparent flex items-center lg:justify-center cursor-pointer lg:w-40"
         >
           <span class="ml-2" v-if="item.route !== 'cart'">{{
@@ -52,9 +52,9 @@ const navigate = (itemRoute) => {
         </router-link>
         <router-link
           v-else
-          :to="item.route"
-          @keydown.enter="navigate(item.route)"
-          @keydown.space="navigate(item.route)"
+          :to="{ name: item.name }"
+          @keydown.enter="navigate(item.name)"
+          @keydown.space="navigate(item.name)"
         >
           <i class="pi pi-shopping-cart px-4" title="cart"></i>
         </router-link>
