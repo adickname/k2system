@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function addAcount(Request $request)
+    public function addAccount(Request $request)
     {
         $fields =  $request->validate([
             'username' => 'required|unique:admins',
@@ -22,7 +22,7 @@ class AuthController extends Controller
         $token = $admin->createToken($request->username);
         return ['token' => $token->plainTextToken];
     }
-    public function deleteAcount(Request $request)
+    public function deleteAccount(Request $request)
     {
         $admin = $request->user();
         $request->user()->tokens()->delete();
