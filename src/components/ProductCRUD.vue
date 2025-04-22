@@ -40,7 +40,10 @@ const updateProduct = async () => {
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
       formData,
       {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+        },
       }
     );
     if (response.status === 200) {
@@ -68,7 +71,12 @@ const removeFile = () => {
 const deleteProduct = async () => {
   try {
     const response = await axios.delete(
-      `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`
+      `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+        },
+      }
     );
     if (response.status === 200) {
       sendedCorrectly.value = true;

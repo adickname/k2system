@@ -8,20 +8,11 @@ import axios from "axios";
 import { ref } from "vue";
 import ProductCRUD from "@/components/ProductCRUD.vue";
 import AddProduct from "@/components/AddProduct.vue";
+import Login from "@/components/Login.vue";
 const username = ref(null);
 const password = ref(null);
 const message = ref("nma razie nic");
 const products = ref();
-const login = async () => {
-  console.log(username.value, password.value);
-  const response = await axios.post("http://localhost:8000/admin/login", {
-    username: username.value,
-    password: password.value,
-  });
-  const token = response.data.token;
-  localStorage.setItem("adminToken", token);
-  await getMessage();
-};
 
 const getProducts = async () => {
   try {
@@ -35,15 +26,7 @@ const getProducts = async () => {
 </script>
 
 <template>
-  <!--   <FloatLabel class="my-4 w-full">
-    <InputText id="name" v-model="username" class="w-full" />
-    <label for="name">Nazwa uzytkownika</label>
-  </FloatLabel>
-  <FloatLabel class="my-4 w-full">
-    <Password id="userEmail" v-model="password" class="w-full" />
-    <label for="userEmail">Haslo</label>
-  </FloatLabel>
-  <Button @click="login" label="Zaloguj się"></Button> -->
+  <Login></Login>
 
   <div class="w-full">
     <p>Wszystkie produkty w sklepie:</p>

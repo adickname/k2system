@@ -22,7 +22,10 @@ const addProduct = async () => {
       `${import.meta.env.VITE_BACKEND_URL}/api/products`,
       formData,
       {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+          "Content-Type": "multipart/form-data",
+        },
       }
     );
     if (response.status === 201) {
