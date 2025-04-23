@@ -8,6 +8,7 @@ import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import Button from "primevue/button";
 const product = ref(null);
 const route = useRoute();
 const getProduct = async () => {
@@ -19,6 +20,40 @@ const getProduct = async () => {
 
 const numberItems = ref(null);
 getProduct();
+
+const addToCart = () => {
+  if (localStorage.getItem("cart")) {
+    let didFoundInStorage = false;
+    let itemsInCart = JSON.parse(localStorage.getItem("cart"));
+    console.log(itemsInCart);
+    itemsInCart.forEach((element) => {
+      if (element.id === route.params.id) {
+        element.count = element.count + numberItems.value;
+        didFoundInStorage = true;
+      }
+    });
+    if (!didFoundInStorage) {
+      const item = {
+        id: route.params.id,
+        count: numberItems.value,
+        cost: product.value.cost,
+      };
+      itemsInCart.push(item);
+    }
+    localStorage.setItem("cart", JSON.stringify(itemsInCart));
+  } else {
+    const item = [
+      {
+        id: route.params.id,
+        count: numberItems.value,
+        cost: product.value.cost,
+      },
+    ];
+    if (numberItems.value > 0) {
+      localStorage.setItem("cart", JSON.stringify(item));
+    }
+  }
+};
 </script>
 <template>
   <div>
@@ -40,6 +75,7 @@ getProduct();
           min="1"
           fluid
         />
+        <Button label="Dodaj do koszyka" @click="addToCart()"></Button>
         <Accordion>
           <AccordionPanel>
             <AccordionHeader>Dane wysyłki</AccordionHeader>

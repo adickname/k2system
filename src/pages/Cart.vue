@@ -9,6 +9,32 @@ import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 import ImageBorder from "@/components/ImageBorder.vue";
+import { computed, ref } from "vue";
+const childValues = ref([]);
+const cartItems = ref();
+const getCart = () => {
+  if (localStorage.getItem("cart")) {
+    cartItems.value = JSON.parse(localStorage.getItem("cart"));
+  }
+};
+getCart();
+
+const totalCost = ref(0);
+
+const changeTotalCost = () => {
+  setTimeout(() => {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    totalCost.value = cart.reduce((acc, item) => {
+      console.log(item);
+      return acc + Number(item.cost) * Number(item.count);
+    }, 0);
+  }, 200);
+};
+
+const countChange = () => {
+  console.log("s");
+  changeTotalCost();
+};
 </script>
 <template>
   <div class="lg:flex flex-col justify-center lg:w-[50%] mx-auto">
@@ -16,8 +42,12 @@ import ImageBorder from "@/components/ImageBorder.vue";
       <ImageBorder>
         <h1 class="text-center text-xl">Mój koszyk</h1>
         <article>
-          <ImageBorder>
-            <CartItem></CartItem>
+          <ImageBorder v-for="item in cartItems">
+            <CartItem
+              :id="item.id"
+              :count="item.count"
+              @count-change="countChange"
+            ></CartItem>
           </ImageBorder>
         </article>
         <Accordion class="w-full pt-2">
@@ -47,7 +77,7 @@ import ImageBorder from "@/components/ImageBorder.vue";
         <h2 class="text-lg">Podsumowanie zamówienia</h2>
         <div class="flex flex-row w-full">
           <p class="w-1/2">Razem</p>
-          <p class="w-1/2 text-right">7382 zł</p>
+          <p class="w-1/2 text-right">{{ totalCost }} zł</p>
         </div>
         <div>
           <Button label="Zamówienie" class="w-full"></Button>

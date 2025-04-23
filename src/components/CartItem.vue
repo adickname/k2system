@@ -1,18 +1,54 @@
 <script setup>
 import InputNumber from "primevue/inputnumber";
+import axios from "axios";
+import { computed, ref, watch, defineEmits } from "vue";
+const props = defineProps(["count", "id"]);
+const count = ref(props.count);
+const product = ref();
+const totalCost = computed(() => count.value * product.value.cost);
+const emit = defineEmits(["count-change"]);
+const getProduct = async () => {
+  const response = await axios.get(
+    `${import.meta.env.VITE_BACKEND_URL}/api/products/${props.id}`
+  );
+  product.value = response.data;
+  const item = {
+    id: props.id,
+    count: count.value,
+    cost: product.value.cost,
+  };
+  emit("count-change", JSON.stringify(item));
+};
+getProduct();
+
+watch(count, (newValue, oldValue) => {
+  const item = {
+    count: newValue,
+    cost: product.value.cost,
+  };
+  emit("count-change", JSON.stringify(item));
+  let itemsInCart = JSON.parse(localStorage.getItem("cart"));
+  itemsInCart.forEach((item) => {
+    if (item.id == props.id) {
+      item.count = count.value;
+    }
+  });
+  localStorage.setItem("cart", JSON.stringify(itemsInCart));
+});
 </script>
 
 <template>
   <div
     class="lg:mx-0 sm:mx-6 md:mx-8 flex flex-col sm:flex-row justify-between items-center sm:items-start"
+    v-if="product"
   >
     <img src="/public/assets/c550i.avif" class="sm:w-2/6 lg:w-auto" alt="" />
     <div class="sm:ml-4 mt-4 sm:mt-0 text-center sm:text-left">
-      <p class="font-medium text-lg">Kopiarka Bizhub 367 Konica Minolta Mono</p>
-      <p class="text-xl font-semibold">2 424,00 zł</p>
+      <p class="font-medium text-lg">{{ product.name }}</p>
+      <p class="text-xl font-semibold">{{ product.cost }}zł</p>
       <div class="flex items-center">
         <InputNumber
-          v-model="value2"
+          v-model="count"
           inputId="minmax-buttons"
           mode="decimal"
           showButtons
@@ -23,6 +59,7 @@ import InputNumber from "primevue/inputnumber";
         />
         <i class="pi pi-trash text-xl sm:text-2xl text-gray-600 px-2"></i>
       </div>
+      <p>Razem: {{ totalCost }} zł</p>
     </div>
   </div>
 </template>
