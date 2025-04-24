@@ -7,15 +7,18 @@ import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Button from "primevue/button";
+
 const product = ref(null);
 const route = useRoute();
 const getProduct = async () => {
-  const response = await axios.get(
-    `${import.meta.env.VITE_BACKEND_URL}/api/products/${route.params.id}`
-  );
-  product.value = response.data;
+  try {
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/products/${route.params.id}`
+    );
+    if (response.status === 200) product.value = response.data;
+  } catch (error) {}
 };
 
 const numberItems = ref(null);

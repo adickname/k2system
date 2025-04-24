@@ -72,7 +72,6 @@ const logout = async () => {
 };
 </script>
 <template>
-  {{ isLoged }}
   <div class="lg:w-[20%]">
     <FloatLabel class="my-4 w-full">
       <InputText id="username" v-model="username" class="w-full" />

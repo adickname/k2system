@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-
+import axios from "axios";
 const router = createRouter({
   routes: [
     {
@@ -31,6 +31,20 @@ const router = createRouter({
       path: "/products/:id",
       component: () => import("./pages/ProductDetails.vue"),
       name: "product-details",
+      beforeEnter: async (to, from, next) => {
+        try {
+          await axios.head(
+            `${import.meta.env.VITE_BACKEND_URL}/api/products/${to.params.id}`
+          );
+          next();
+        } catch (err) {
+          if (err.response?.status === 404) {
+            next({ name: "404-product" });
+          } else {
+            next(false);
+          }
+        }
+      },
     },
     {
       path: "/contact",
@@ -46,6 +60,16 @@ const router = createRouter({
       path: "/admin",
       component: () => import("@/pages/Admin.vue"),
       name: "admin",
+    },
+    {
+      path: "/404-product",
+      component: () => import("@/pages/404Page.vue"),
+      name: "404-product",
+    },
+    {
+      path: "/:notFound",
+      component: () => import("@/pages/404Page.vue"),
+      name: "404",
     },
   ],
   history: createWebHistory(),

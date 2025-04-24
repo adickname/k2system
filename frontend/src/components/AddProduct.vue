@@ -54,11 +54,17 @@ const removeFile = () => {
 };
 </script>
 <template>
-  <div>
+  <div class="">
     <p>Name</p>
     <Textarea v-model="name"></Textarea>
     <p>Image</p>
     <FileUpload
+      :pt="{
+        root: {
+          class: 'justify-self-start',
+          style: { justifyContent: 'flex-start' },
+        },
+      }"
       @select="onFileSelect"
       name="image"
       :customUpload="true"

@@ -19,8 +19,6 @@ watch(
 );
 const updateProduct = async () => {
   let imageRequest;
-  console.log(local.selectedImage);
-  console.log(local.image instanceof File);
   if (local.image instanceof File === false) {
     imageRequest = local.image.replace(
       `${import.meta.env.VITE_BACKEND_URL}storage/`,
@@ -36,9 +34,6 @@ const updateProduct = async () => {
     formData.append("cost", local.cost);
     formData.append("description", local.description);
     formData.append("image", imageRequest);
-    for (let [key, value] of formData.entries()) {
-      console.log(key + ": " + value);
-    }
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
       formData,
@@ -98,6 +93,12 @@ const deleteProduct = async () => {
     <p>Image</p>
     <img :src="local.image" alt="" />
     <FileUpload
+      :pt="{
+        root: {
+          class: 'justify-self-start',
+          style: { justifyContent: 'flex-start' },
+        },
+      }"
       @select="onFileSelect"
       name="image"
       :customUpload="true"
