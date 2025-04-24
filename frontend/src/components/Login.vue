@@ -79,7 +79,12 @@ const logout = async () => {
       <label for="username">Nazwa uzytkownika</label>
     </FloatLabel>
     <FloatLabel class="my-4 w-full">
-      <Password id="password" v-model="password" class="w-full" />
+      <Password
+        id="password"
+        v-model="password"
+        :feedback="false"
+        class="w-full"
+      />
       <label for="password">Haslo</label>
     </FloatLabel>
     <Button
