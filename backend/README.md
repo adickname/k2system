@@ -1,4 +1,26 @@
-<<<<<<< HEAD
+Before you start application, create .env file and define:
+APP_NAME
+APP_ENV
+APP_KEY
+APP_DEBUG
+APP_URL
+
+DB_CONNECTION
+DB_HOST
+DB_PORT
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
 ```sh
 npm i
 composer install
@@ -70,4 +92,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> kserokopiarki-backend/main
+
