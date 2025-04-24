@@ -1,8 +1,30 @@
-<<<<<<< HEAD
+Before you start application, create .env file and define:
+APP_NAME
+APP_ENV
+APP_KEY
+APP_DEBUG
+APP_URL
+
+DB_CONNECTION
+DB_HOST
+DB_PORT
+DB_DATABASE
+DB_USERNAME
+DB_PASSWORD
+
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
 ```sh
-cd frontend
 npm i
-npm run dev
+composer install
+php artisan serve
 =======
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
@@ -70,4 +92,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> kserokopiarki-backend/main
+
