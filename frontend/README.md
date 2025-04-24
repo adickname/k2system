@@ -1,4 +1,4 @@
+Before you start app, create .env file and define VITE_BACKEND_URL
 ```sh
-cd frontend
 npm i
 npm run dev
