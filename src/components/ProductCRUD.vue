@@ -22,7 +22,10 @@ const updateProduct = async () => {
   console.log(local.selectedImage);
   console.log(local.image instanceof File);
   if (local.image instanceof File === false) {
-    imageRequest = local.image.replace("http://localhost:8000/storage/", "");
+    imageRequest = local.image.replace(
+      `${import.meta.env.VITE_BACKEND_URL}storage/`,
+      ""
+    );
   } else {
     imageRequest = local.image;
   }

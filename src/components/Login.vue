@@ -17,10 +17,13 @@ window.addEventListener("storage", () => {
   isLoged.value = !!sessionStorage.getItem("adminToken");
 });
 const login = async () => {
-  const response = await axios.post("http://localhost:8000/api/login", {
-    username: username.value,
-    password: password.value,
-  });
+  const response = await axios.post(
+    `${import.meta.env.VITE_BACKEND_URL}/api/login`,
+    {
+      username: username.value,
+      password: password.value,
+    }
+  );
   if (response.status === 200) {
     const token = await response.data.token;
     sessionStorage.setItem("adminToken", token);
@@ -32,10 +35,13 @@ const login = async () => {
 };
 
 const register = async () => {
-  const response = await axios.post("http://localhost:8000/api/add-account", {
-    username: username.value,
-    password: password.value,
-  });
+  const response = await axios.post(
+    `${import.meta.env.VITE_BACKEND_URL}/api/add-account`,
+    {
+      username: username.value,
+      password: password.value,
+    }
+  );
   if (response.status === 200) {
     const token = await response.data.token;
     sessionStorage.setItem("adminToken", token);
@@ -48,7 +54,7 @@ const register = async () => {
 
 const logout = async () => {
   const response = await axios.post(
-    "http://localhost:8000/api/logout",
+    `${import.meta.env.VITE_BACKEND_URL}/api/logout`,
     {},
     {
       headers: {
