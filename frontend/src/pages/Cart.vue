@@ -25,14 +25,12 @@ const changeTotalCost = () => {
   setTimeout(() => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     totalCost.value = cart.reduce((acc, item) => {
-      console.log(item);
       return acc + Number(item.cost) * Number(item.count);
     }, 0);
   }, 200);
 };
 
 const countChange = () => {
-  console.log("s");
   changeTotalCost();
 };
 </script>

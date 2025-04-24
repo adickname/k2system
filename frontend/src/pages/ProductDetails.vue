@@ -6,6 +6,7 @@ import Accordion from "primevue/accordion";
 import AccordionPanel from "primevue/accordionpanel";
 import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
+import Message from "primevue/message";
 import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import Button from "primevue/button";
@@ -20,7 +21,7 @@ const getProduct = async () => {
     if (response.status === 200) product.value = response.data;
   } catch (error) {}
 };
-
+const sendedCorrectly = ref();
 const numberItems = ref(null);
 getProduct();
 
@@ -28,7 +29,6 @@ const addToCart = () => {
   if (localStorage.getItem("cart")) {
     let didFoundInStorage = false;
     let itemsInCart = JSON.parse(localStorage.getItem("cart"));
-    console.log(itemsInCart);
     itemsInCart.forEach((element) => {
       if (element.id === route.params.id) {
         element.count = element.count + numberItems.value;
@@ -44,6 +44,7 @@ const addToCart = () => {
       itemsInCart.push(item);
     }
     localStorage.setItem("cart", JSON.stringify(itemsInCart));
+    sendedCorrectly.value = true;
   } else {
     const item = [
       {
@@ -79,6 +80,14 @@ const addToCart = () => {
           fluid
         />
         <Button label="Dodaj do koszyka" @click="addToCart()"></Button>
+        <Message
+          severity="success"
+          :life="2000"
+          v-if="sendedCorrectly === true"
+          @life-end="resetSendedCorrectly"
+        >
+          Dodano do koszyka</Message
+        >
         <Accordion>
           <AccordionPanel>
             <AccordionHeader>Dane wysyłki</AccordionHeader>
@@ -91,8 +100,8 @@ const addToCart = () => {
                 </li>
               </ul>
             </AccordionContent>
-          </AccordionPanel></Accordion
-        >
+          </AccordionPanel>
+        </Accordion>
       </div>
     </div>
     <div class="mx-auto lg:max-w-[60%] animate-coming-left">
@@ -103,8 +112,8 @@ const addToCart = () => {
             <AccordionContent class="w-full whitespace-pre-wrap">
               <div class="max-w-full">{{ product.description }}</div>
             </AccordionContent>
-          </AccordionPanel></Accordion
-        >
+          </AccordionPanel>
+        </Accordion>
       </div>
     </div>
   </div>

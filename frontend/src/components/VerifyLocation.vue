@@ -26,7 +26,6 @@ const check = () => {
   if (locations.value.includes(value.value.toLowerCase())) {
     isInLocation.value = true;
   } else {
-    console.log(false);
     isInLocation.value = false;
   }
 };

@@ -20,7 +20,6 @@ const getProducts = async () => {
       `${import.meta.env.VITE_BACKEND_URL}/api/products`
     );
     products.value = response.data;
-    console.log(response.data);
   } catch (error) {}
 };
 </script>
