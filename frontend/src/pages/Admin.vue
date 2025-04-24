@@ -9,6 +9,7 @@ import { ref } from "vue";
 import ProductCRUD from "@/components/ProductCRUD.vue";
 import AddProduct from "@/components/AddProduct.vue";
 import Login from "@/components/Login.vue";
+import ImageBorder from "@/components/ImageBorder.vue";
 const username = ref(null);
 const password = ref(null);
 const message = ref("nma razie nic");
@@ -38,17 +39,21 @@ const filter = () => {
     <Button @click="getProducts()">Odśwież</Button>
   </div>
   <div>
-    <AddProduct></AddProduct>
+    <ImageBorder class="w-[40%]">
+      <AddProduct></AddProduct>
+    </ImageBorder>
   </div>
   <InputText v-model="name"></InputText
   ><Button @click="filter()" label="Znajdź"></Button>
   <div v-for="product in products">
-    <ProductCRUD
-      :name="product.name"
-      :id="product.id"
-      :cost="product.cost"
-      :image="product.image"
-      :description="product.description"
-    ></ProductCRUD>
+    <ImageBorder class="lg:w-[40%]">
+      <ProductCRUD
+        :name="product.name"
+        :id="product.id"
+        :cost="product.cost"
+        :image="product.image"
+        :description="product.description"
+      ></ProductCRUD>
+    </ImageBorder>
   </div>
 </template>

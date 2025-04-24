@@ -56,7 +56,7 @@ const removeFile = () => {
 <template>
   <div class="">
     <p>Name</p>
-    <Textarea v-model="name"></Textarea>
+    <Textarea v-model="name" cols="50"></Textarea>
     <p>Image</p>
     <FileUpload
       :pt="{
