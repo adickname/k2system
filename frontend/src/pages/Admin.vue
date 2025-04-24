@@ -13,7 +13,7 @@ const username = ref(null);
 const password = ref(null);
 const message = ref("nma razie nic");
 const products = ref();
-
+const name = ref();
 const getProducts = async () => {
   try {
     const response = await axios.get(
@@ -21,6 +21,12 @@ const getProducts = async () => {
     );
     products.value = response.data;
   } catch (error) {}
+};
+
+const filter = () => {
+  products.value = products.value.filter((element) =>
+    element.name.includes(name.value)
+  );
 };
 </script>
 
@@ -34,6 +40,8 @@ const getProducts = async () => {
   <div>
     <AddProduct></AddProduct>
   </div>
+  <InputText v-model="name"></InputText
+  ><Button @click="filter()" label="Znajdź"></Button>
   <div v-for="product in products">
     <ProductCRUD
       :name="product.name"
