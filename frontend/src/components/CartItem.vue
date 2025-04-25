@@ -42,7 +42,7 @@ watch(count, (newValue, oldValue) => {
     class="lg:mx-0 sm:mx-6 md:mx-8 flex flex-col sm:flex-row justify-between items-center sm:items-start"
     v-if="product"
   >
-    <img src="/public/assets/c550i.avif" class="sm:w-2/6 lg:w-auto" alt="" />
+    <img :src="product.image" class="sm:w-2/6 lg:w-auto" alt="" />
     <div class="sm:ml-4 mt-4 sm:mt-0 text-center sm:text-left">
       <p class="font-medium text-lg">{{ product.name }}</p>
       <p class="text-xl font-semibold">{{ product.cost }}zł</p>
