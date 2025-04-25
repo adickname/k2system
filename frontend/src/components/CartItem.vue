@@ -6,7 +6,7 @@ const props = defineProps(["count", "id"]);
 const count = ref(props.count);
 const product = ref();
 const totalCost = computed(() => count.value * product.value.cost);
-const emit = defineEmits(["count-change"]);
+const emit = defineEmits(["count-change", "remove"]);
 const getProduct = async () => {
   const response = await axios.get(
     `${import.meta.env.VITE_BACKEND_URL}/api/products/${props.id}`
@@ -35,6 +35,10 @@ watch(count, (newValue, oldValue) => {
   });
   localStorage.setItem("cart", JSON.stringify(itemsInCart));
 });
+
+const removeItem = () => {
+  emit("remove");
+};
 </script>
 
 <template>
@@ -57,7 +61,10 @@ watch(count, (newValue, oldValue) => {
           fluid
           class="mt-2"
         />
-        <i class="pi pi-trash text-xl sm:text-2xl text-gray-600 px-2"></i>
+        <i
+          class="pi pi-trash text-xl sm:text-2xl text-gray-600 px-2"
+          @click="removeItem()"
+        ></i>
       </div>
       <p>Razem: {{ totalCost }} zł</p>
     </div>

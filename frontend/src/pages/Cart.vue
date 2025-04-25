@@ -15,6 +15,9 @@ const cartItems = ref();
 const getCart = () => {
   if (localStorage.getItem("cart")) {
     cartItems.value = JSON.parse(localStorage.getItem("cart"));
+    cartItems.value.forEach((element) => {
+      element.visible = true;
+    });
   }
 };
 getCart();
@@ -33,18 +36,30 @@ const changeTotalCost = () => {
 const countChange = () => {
   changeTotalCost();
 };
+
+const removeItemHandler = (id) => {
+  cartItems.value.forEach((element) => {
+    if (element.id === id) {
+      element.visible = false;
+      let cartStorage = JSON.parse(localStorage.getItem("cart"));
+      cartStorage = cartStorage.filter((item) => item.id !== id);
+      localStorage.setItem("cart", JSON.stringify(cartStorage));
+    }
+  });
+};
 </script>
 <template>
   <div class="lg:flex flex-col justify-center lg:w-[50%] mx-auto">
     <section class="p-2 animate-fall">
       <ImageBorder>
         <h1 class="text-center text-xl">Mój koszyk</h1>
-        <article>
-          <ImageBorder v-for="item in cartItems">
+        <article v-for="item in cartItems">
+          <ImageBorder v-if="item.visible">
             <CartItem
               :id="item.id"
               :count="item.count"
               @count-change="countChange"
+              @remove="removeItemHandler(item.id)"
             ></CartItem>
           </ImageBorder>
         </article>
