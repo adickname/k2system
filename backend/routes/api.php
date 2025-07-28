@@ -27,7 +27,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 Route::apiResource('users', UserController::class)->middleware('auth:sanctum-user')->except('store', 'show');
 Route::post('users/create', [UserController::class, 'store']);
 Route::post('users/login', [UserController::class, 'show']);
-
+Route::post('/users/logout', [UserController::class, 'logout'])->middleware('auth:sanctum-user');
 
 Route::middleware('auth:sanctum-user')->post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession']);
 
