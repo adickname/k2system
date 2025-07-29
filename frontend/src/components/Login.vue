@@ -9,24 +9,27 @@ import axios from "axios";
 const username = ref(null);
 const password = ref(null);
 const isLoged = ref(false);
+const props = defineProps([
+  "backendUrlLogin",
+  "backendUrlRegister",
+  "backendUrlLogout",
+  "tokenName",
+]);
 const sendedCorrectly = ref(null);
 const resetSendedCorrectly = () => {
   sendedCorrectly.value = null;
 };
 window.addEventListener("storage", () => {
-  isLoged.value = !!sessionStorage.getItem("adminToken");
+  isLoged.value = !!sessionStorage.getItem(props.tokenName);
 });
 const login = async () => {
-  const response = await axios.post(
-    `${import.meta.env.VITE_BACKEND_URL}/api/login`,
-    {
-      username: username.value,
-      password: password.value,
-    }
-  );
+  const response = await axios.post(props.backendUrlLogin, {
+    username: username.value,
+    password: password.value,
+  });
   if (response.status === 200) {
     const token = await response.data.token;
-    sessionStorage.setItem("adminToken", token);
+    sessionStorage.setItem(props.tokenName, token);
     sendedCorrectly.value = true;
     isLoged.value = true;
   } else {
@@ -35,16 +38,13 @@ const login = async () => {
 };
 
 const register = async () => {
-  const response = await axios.post(
-    `${import.meta.env.VITE_BACKEND_URL}/api/add-account`,
-    {
-      username: username.value,
-      password: password.value,
-    }
-  );
+  const response = await axios.post(props.backendUrlRegister, {
+    username: username.value,
+    password: password.value,
+  });
   if (response.status === 200) {
     const token = await response.data.token;
-    sessionStorage.setItem("adminToken", token);
+    sessionStorage.setItem(props.tokenName, token);
     sendedCorrectly.value = true;
     isLoged.value = true;
   } else {
@@ -54,16 +54,16 @@ const register = async () => {
 
 const logout = async () => {
   const response = await axios.post(
-    `${import.meta.env.VITE_BACKEND_URL}/api/logout`,
+    props.backendUrlLogout,
     {},
     {
       headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
+        Authorization: "Bearer " + sessionStorage.getItem(props.tokenName),
       },
     }
   );
   if (response.status === 200) {
-    sessionStorage.removeItem("adminToken");
+    sessionStorage.removeItem(props.tokenName);
     sendedCorrectly.value = true;
     isLoged.value = false;
   } else {
@@ -106,7 +106,7 @@ const logout = async () => {
       :life="2000"
       v-if="sendedCorrectly === false"
       @life-end="resetSendedCorrectly"
-      >Niw Wysłano pomyślnie</Message
+      >Nie Wysłano pomyślnie</Message
     >
   </div>
 </template>

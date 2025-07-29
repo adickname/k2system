@@ -29,10 +29,20 @@ const filter = () => {
     element.name.includes(name.value)
   );
 };
+const backendUrlLogin = `${import.meta.env.VITE_BACKEND_URL}/api/login`;
+const backendUrlRegister = `${
+  import.meta.env.VITE_BACKEND_URL
+}/api/add-account`;
+const backendUrlLogout = `${import.meta.env.VITE_BACKEND_URL}/api/logout`;
 </script>
 
 <template>
-  <Login></Login>
+  <Login
+    :backend-url-login="backendUrlLogin"
+    :backend-url-register="backendUrlRegister"
+    :backend-url-logout="backendUrlLogout"
+    token-name="adminToken"
+  ></Login>
 
   <div class="w-full">
     <p>Wszystkie produkty w sklepie:</p>
