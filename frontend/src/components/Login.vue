@@ -14,7 +14,9 @@ const props = defineProps([
   "backendUrlRegister",
   "backendUrlLogout",
   "tokenName",
+  "role",
 ]);
+
 const sendedCorrectly = ref(null);
 const resetSendedCorrectly = () => {
   sendedCorrectly.value = null;
@@ -23,10 +25,13 @@ window.addEventListener("storage", () => {
   isLoged.value = !!sessionStorage.getItem(props.tokenName);
 });
 const login = async () => {
-  const response = await axios.post(props.backendUrlLogin, {
-    username: username.value,
+  let loginData = {
+    ...(props.role == "admin"
+      ? { username: username.value }
+      : { email: username.value }),
     password: password.value,
-  });
+  };
+  const response = await axios.post(props.backendUrlLogin, loginData);
   if (response.status === 200) {
     const token = await response.data.token;
     sessionStorage.setItem(props.tokenName, token);
@@ -38,10 +43,13 @@ const login = async () => {
 };
 
 const register = async () => {
-  const response = await axios.post(props.backendUrlRegister, {
-    username: username.value,
+  let loginData = {
+    ...(props.role == "admin"
+      ? { username: username.value }
+      : { email: username.value }),
     password: password.value,
-  });
+  };
+  const response = await axios.post(props.backendUrlRegister, loginData);
   if (response.status === 200) {
     const token = await response.data.token;
     sessionStorage.setItem(props.tokenName, token);
