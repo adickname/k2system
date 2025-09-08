@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import axios from "axios";
+
 const router = createRouter({
   routes: [
     {
@@ -61,6 +62,12 @@ const router = createRouter({
       component: () => import("@/pages/Admin.vue"),
       name: "admin",
     },
+    {
+      path: "/login",
+      component: () => import("./pages/UserLogin.vue"),
+      name: "login",
+    },
+
     {
       path: "/404-product",
       component: () => import("@/pages/404Page.vue"),

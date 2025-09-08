@@ -37,12 +37,7 @@ const updateProduct = async () => {
     const response = await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
       formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
-        },
-      }
+      { withCredentials: true, withXSRFToken: true }
     );
     if (response.status === 200) {
       sendedCorrectly.value = true;
@@ -70,11 +65,7 @@ const deleteProduct = async () => {
   try {
     const response = await axios.delete(
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
-      {
-        headers: {
-          Authorization: "Bearer " + sessionStorage.getItem("adminToken"),
-        },
-      }
+      { withCredentials: true, withXSRFToken: true }
     );
     if (response.status === 200) {
       sendedCorrectly.value = true;
@@ -92,21 +83,13 @@ const deleteProduct = async () => {
     <Textarea v-model="local.name" rows="5" cols="50" />
     <p>Image</p>
     <img :src="local.image" alt="" />
-    <FileUpload
-      :pt="{
-        root: {
-          class: 'justify-self-start',
-          style: { justifyContent: 'flex-start' },
-        },
-      }"
-      @select="onFileSelect"
-      name="image"
-      :customUpload="true"
-      accept="image/*"
-      mode="basic"
-      auto
-      chooseLabel="Wybierz zdjęcie"
-    ></FileUpload>
+    <FileUpload :pt="{
+      root: {
+        class: 'justify-self-start',
+        style: { justifyContent: 'flex-start' },
+      },
+    }" @select="onFileSelect" name="image" :customUpload="true" accept="image/*" mode="basic" auto
+      chooseLabel="Wybierz zdjęcie"></FileUpload>
     <div v-if="local.image">
       <p>Wybrane zdjęcie: {{ local.image.name }}</p>
       <Button @click="removeFile">Usuń zdjęcie</Button>
@@ -120,18 +103,8 @@ const deleteProduct = async () => {
     <Button @click="deleteProduct()" class="mx-4">Usuń</Button>
     <Button @click="updateProduct()">Edytuj</Button>
   </div>
-  <Message
-    severity="success"
-    :life="2000"
-    v-if="sendedCorrectly === true"
-    @life-end="resetSendedCorrectly"
-    >Wykonano pomyślnie</Message
-  >
-  <Message
-    severity="warn"
-    :life="2000"
-    @life-end="resetSendedCorrectly"
-    v-else-if="sendedCorrectly === false"
-    >Nie wykonano pomyślnie</Message
-  >
+  <Message severity="success" :life="2000" v-if="sendedCorrectly === true" @life-end="resetSendedCorrectly">Wykonano
+    pomyślnie</Message>
+  <Message severity="warn" :life="2000" @life-end="resetSendedCorrectly" v-else-if="sendedCorrectly === false">Nie
+    wykonano pomyślnie</Message>
 </template>

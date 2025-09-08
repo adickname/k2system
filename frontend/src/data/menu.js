@@ -32,6 +32,12 @@ export const items = ref([
     name: "contact",
   },
   {
+    label: "Zaloguj",
+    route: "login",
+    name: "login",
+  },
+
+  {
     route: "cart",
     name: "cart",
   },

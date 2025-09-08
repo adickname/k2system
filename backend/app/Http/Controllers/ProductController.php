@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $request->user();
+        $user = $request->user('admin');
         if (!$user) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -66,7 +66,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        if ($request->user()) {
+        if ($request->user('admin')) {
             $fields =  $request->validate([
                 'name' => 'required',
                 'cost' => 'required',
@@ -74,20 +74,16 @@ class ProductController extends Controller
                 'image' => [
                     'required',
                     function ($attribute, $value, $fail) use ($request) {
-                        // Walidacja, czy image to plik
                         if ($request->hasFile('image')) {
                             if (!$request->file('image')->isValid()) {
                                 $fail('Uploaded image is not valid.');
                             }
-                            // Sprawdź, czy plik jest jednym z dozwolonych formatów
                             $allowedTypes = ['jpeg', 'png', 'gif', 'bmp', 'webp', 'avif'];
                             $fileExtension = $request->file('image')->getClientOriginalExtension();
                             if (!in_array($fileExtension, $allowedTypes)) {
                                 $fail('Invalid image type.');
                             }
-                        }
-                        // Walidacja, czy image to ścieżka (string)
-                        elseif (!is_string($value)) {
+                        } elseif (!is_string($value)) {
                             $fail('Image must be a valid image path or an uploaded file.');
                         }
                     }
@@ -110,7 +106,7 @@ class ProductController extends Controller
     public function destroy(Request $request, Product $product)
     {
 
-        if ($request->user()) {
+        if ($request->user('admin')) {
             $delected =  $product->delete();
             if ($delected) {
                 return "Deleted";

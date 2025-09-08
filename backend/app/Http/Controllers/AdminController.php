@@ -3,48 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Http\Requests\StoreAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $guard = 'admin';
+    public function __construct()
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAdminRequest $request)
-    {
-        //
+        Auth::shouldUse($this->guard);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
+    public function addAccount(Request $request)
     {
-        //
+
+        $user = $request->user();
+        if (!$user) {
+            $fields =  $request->validate([
+                'username' => 'required|unique:admins',
+                'password' => 'required',
+            ]);
+            $user = Admin::create(['username' => $fields['username'], 'password' => Hash::make($fields['password'])]);
+            Auth::login($user);
+            $request->session()->regenerate();
+            return response()->json(['message' => "created successfully"], 201);
+        }
+        return response()->json(["message" => "couldn't create user"], 409);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAdminRequest $request, Admin $admin)
+    public function deleteAccount(Request $request) {}
+    public function login(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'username' => 'required|exists:admins',
+            'password' => 'required'
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return response()->json(['message' => 'Logged in']);
+        }
+
+        return response()->json(['error' => 'Invalid credentials'], 401);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
+    public function logout(Request $request)
     {
-        //
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return [
+            'message' => 'Logged out'
+        ];
     }
 }

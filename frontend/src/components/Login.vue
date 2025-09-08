@@ -6,14 +6,14 @@ import Password from "primevue/password";
 import Button from "primevue/button";
 import Message from "primevue/message";
 import axios from "axios";
+import { useIsLoged } from "@/composables/useIsLoged.vue";
+const { isLoged } = useIsLoged()
 const username = ref(null);
 const password = ref(null);
-const isLoged = ref(false);
 const props = defineProps([
   "backendUrlLogin",
   "backendUrlRegister",
   "backendUrlLogout",
-  "tokenName",
   "role",
 ]);
 
@@ -21,9 +21,7 @@ const sendedCorrectly = ref(null);
 const resetSendedCorrectly = () => {
   sendedCorrectly.value = null;
 };
-window.addEventListener("storage", () => {
-  isLoged.value = !!sessionStorage.getItem(props.tokenName);
-});
+
 const login = async () => {
   let loginData = {
     ...(props.role == "admin"
@@ -31,10 +29,10 @@ const login = async () => {
       : { email: username.value }),
     password: password.value,
   };
-  const response = await axios.post(props.backendUrlLogin, loginData);
+  const response = await axios.post(props.backendUrlLogin, loginData, {
+    withCredentials: true, withXSRFToken: true
+  });
   if (response.status === 200) {
-    const token = await response.data.token;
-    sessionStorage.setItem(props.tokenName, token);
     sendedCorrectly.value = true;
     isLoged.value = true;
   } else {
@@ -49,10 +47,8 @@ const register = async () => {
       : { email: username.value }),
     password: password.value,
   };
-  const response = await axios.post(props.backendUrlRegister, loginData);
-  if (response.status === 200) {
-    const token = await response.data.token;
-    sessionStorage.setItem(props.tokenName, token);
+  const response = await axios.post(props.backendUrlRegister, loginData, { withCredentials: true, withXSRFToken: true });
+  if (response.status === 201) {
     sendedCorrectly.value = true;
     isLoged.value = true;
   } else {
@@ -62,16 +58,12 @@ const register = async () => {
 
 const logout = async () => {
   const response = await axios.post(
-    props.backendUrlLogout,
-    {},
+    props.backendUrlLogout, {},
     {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem(props.tokenName),
-      },
+      withCredentials: true, withXSRFToken: true
     }
   );
   if (response.status === 200) {
-    sessionStorage.removeItem(props.tokenName);
     sendedCorrectly.value = true;
     isLoged.value = false;
   } else {
@@ -86,35 +78,15 @@ const logout = async () => {
       <label for="username">Nazwa uzytkownika</label>
     </FloatLabel>
     <FloatLabel class="my-4 w-full">
-      <Password
-        id="password"
-        v-model="password"
-        :feedback="false"
-        class="w-full"
-      />
+      <Password id="password" v-model="password" :feedback="false" class="w-full" />
       <label for="password">Haslo</label>
     </FloatLabel>
-    <Button
-      label="Zaloguj"
-      class="mx-4"
-      @click="login()"
-      v-if="!isLoged"
-    ></Button>
+    <Button label="Zaloguj" class="mx-4" @click="login()" v-if="!isLoged"></Button>
     <Button label="Wyloguj" class="mx-4" @click="logout()" v-else></Button>
-    <Button label="Zarejestruj" @click="register()"></Button>
-    <Message
-      severity="success"
-      :life="2000"
-      v-if="sendedCorrectly === true"
-      @life-end="resetSendedCorrectly"
-      >Wysłano pomyślnie</Message
-    >
-    <Message
-      severity="success"
-      :life="2000"
-      v-if="sendedCorrectly === false"
-      @life-end="resetSendedCorrectly"
-      >Nie Wysłano pomyślnie</Message
-    >
+    <Button label="Zarejestruj" @click="register()" v-if="!isLoged"></Button>
+    <Message severity="success" :life="2000" v-if="sendedCorrectly === true" @life-end="resetSendedCorrectly">Wysłano
+      pomyślnie</Message>
+    <Message severity="success" :life="2000" v-if="sendedCorrectly === false" @life-end="resetSendedCorrectly">Nie
+      Wysłano pomyślnie</Message>
   </div>
 </template>
