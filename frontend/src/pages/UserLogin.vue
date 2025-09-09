@@ -8,5 +8,5 @@ const backendUrlLogout = `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`;
 </script>
 <template>
   <Login :backend-url-login="backendUrlLogin" :backend-url-logout="backendUrlLogout"
-    :backend-url-register="backendUrlRegister"></Login>
+    :backend-url-register="backendUrlRegister" role="user"></Login>
 </template>

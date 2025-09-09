@@ -4,13 +4,14 @@ import { router } from "@/router";
 import { RouterLink } from "vue-router";
 import { items } from "@/data/menu";
 import { useIsLoged } from "@/composables/useIsLoged.vue";
+import { useLoginSystemFunctions } from "@/composables/useLoginSystemFunctions.vue";
 
 const navigate = (itemName) => {
   router.push({ name: itemName });
 };
 const { isLoged } = useIsLoged()
-
-
+const { logout } = useLoginSystemFunctions()
+const backendUrlLogout = `${import.meta.env.VITE_BACKEND_URL}/api/users/logout`;
 </script>
 
 <template>
@@ -54,6 +55,7 @@ const { isLoged } = useIsLoged()
             item.label
           }}</span></router-link>
         <router-link v-else-if="item.route == 'login' && isLoged" :to="{ name: 'home' }"
+          @click="logout(backendUrlLogout)"
           class="text-[#48cae4] font-semibold bg-transparent flex items-center lg:justify-center cursor-pointer lg:w-40"
           @keydown.enter="navigate('home')" @keydown.space="navigate('home')">
           <span class="ml-2" v-if="item.route !== 'cart'">
