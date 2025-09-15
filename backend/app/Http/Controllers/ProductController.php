@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $products->each(function ($product) {
-            $product->image = asset('storage/' . $product->image);
+            $product->image = asset($product->image);
         });
         return $products;
     }
@@ -41,7 +41,7 @@ class ProductController extends Controller
             'name' => 'required',
             'cost' => 'required',
             'description' => 'required',
-            'image' => 'required|mimes:jpeg,png,gif,bmp,webp,avif'
+            'image' => 'required|mimes:jpeg,png,jpg,gif,bmp,webp,avif'
         ]);
         $product = Product::create($fields);
         if ($product) {
@@ -57,7 +57,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->image = asset('storage/' . $product->image);
+        $product->image = asset($product->image);
         return $product;
     }
 
@@ -78,7 +78,7 @@ class ProductController extends Controller
                             if (!$request->file('image')->isValid()) {
                                 $fail('Uploaded image is not valid.');
                             }
-                            $allowedTypes = ['jpeg', 'png', 'gif', 'bmp', 'webp', 'avif'];
+                            $allowedTypes = ['jpeg', 'jpg', 'png', 'gif', 'bmp', 'webp', 'avif'];
                             $fileExtension = $request->file('image')->getClientOriginalExtension();
                             if (!in_array($fileExtension, $allowedTypes)) {
                                 $fail('Invalid image type.');
