@@ -47,7 +47,7 @@ class ProductController extends Controller
         if ($product) {
             $uploadedFile = $request->file('image');
             $path = Storage::disk('public')->putFile('products', $uploadedFile);
-            $product->image = $path;
+            $product->image = "/storage/" . $path;
             $product->save();
         }
         return $product;
@@ -93,7 +93,7 @@ class ProductController extends Controller
             if ($request->hasFile('image')) {
                 $uploadedFile = $request->file('image');
                 $path = Storage::disk('public')->putFile('products', $uploadedFile);
-                $product->image = $path;
+                $product->image = "/storage/" . $path;
             }
             $product->save();
             return $product;
