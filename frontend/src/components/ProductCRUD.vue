@@ -26,24 +26,32 @@ const updateProduct = async () => {
     );
   } else {
     imageRequest = local.image;
+
   }
   try {
-    const formData = new FormData();
-    formData.append("_method", "PUT");
-    formData.append("name", local.name);
-    formData.append("cost", local.cost);
-    formData.append("description", local.description);
-    formData.append("image", imageRequest);
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
-      formData,
+    const isAdmin = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/is-admin`,
       { withCredentials: true, withXSRFToken: true }
     );
-    if (response.status === 200) {
-      sendedCorrectly.value = true;
-    } else {
-      sendedCorrectly.value = false;
+    if (isAdmin.data.isAdmin) {
+      const formData = new FormData();
+      formData.append("_method", "PUT");
+      formData.append("name", local.name);
+      formData.append("cost", local.cost);
+      formData.append("description", local.description);
+      formData.append("image", imageRequest);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/products/${local.id}`,
+        formData,
+        { withCredentials: true, withXSRFToken: true }
+      );
+      if (response.status === 200) {
+        sendedCorrectly.value = true;
+      } else {
+        sendedCorrectly.value = false;
+      }
     }
+
   } catch (error) {
     sendedCorrectly.value = false;
   }

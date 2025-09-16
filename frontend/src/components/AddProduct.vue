@@ -13,24 +13,30 @@ const sendedCorrectly = ref(null);
 const selectedImage = ref(null);
 const addProduct = async () => {
   try {
-    const formData = new FormData();
-    formData.append("name", name.value);
-    formData.append("cost", cost.value);
-    formData.append("description", description.value);
-    formData.append("image", selectedImage.value);
-    const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/products`,
-      formData,
+    const isAdmin = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/is-admin`,
       { withCredentials: true, withXSRFToken: true }
     );
-    if (response.status === 201) {
-      name.value = null;
-      cost.value = null;
-      selectedImage.value = null;
-      description.value = null;
-      sendedCorrectly.value = true;
-    } else {
-      sendedCorrectly.value = false;
+    if (isAdmin.data.isAdmin) {
+      const formData = new FormData();
+      formData.append("name", name.value);
+      formData.append("cost", cost.value);
+      formData.append("description", description.value);
+      formData.append("image", selectedImage.value);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/products`,
+        formData,
+        { withCredentials: true, withXSRFToken: true }
+      );
+      if (response.status === 201) {
+        name.value = null;
+        cost.value = null;
+        selectedImage.value = null;
+        description.value = null;
+        sendedCorrectly.value = true;
+      } else {
+        sendedCorrectly.value = false;
+      }
     }
   } catch (error) {
     sendedCorrectly.value = false;

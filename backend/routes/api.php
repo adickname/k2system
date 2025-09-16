@@ -23,6 +23,7 @@ Route::middleware('web')->group(function () {
     Route::post('/delete-account', [AdminController::class, 'deleteAccount']);
     Route::post('/login', [AdminController::class, 'login']);
     Route::post('/logout', [AdminController::class, 'logout']);
+    Route::get('/is-admin', [AdminController::class, 'isAdmin']);
 });
 Route::middleware('web')->group(function () {
     Route::apiResource('users', UserController::class)->except('store', 'show');

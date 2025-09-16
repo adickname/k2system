@@ -55,4 +55,14 @@ class AdminController extends Controller
             'message' => 'Logged out'
         ];
     }
+    public function isAdmin(Request $request)
+    {
+        $user = $request->user();
+        $isAdmin = Admin::where('id', $user->id)->exists();
+        if ($isAdmin) {
+            return response()->json(['isAdmin' => true]);
+        } else {
+            return response()->json(['isAdmin' => false]);
+        }
+    }
 }
