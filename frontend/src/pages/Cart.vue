@@ -51,6 +51,7 @@ const removeItemHandler = (id) => {
       localStorage.setItem("cart", JSON.stringify(cartStorage));
     }
   });
+  changeTotalCost()
 };
 </script>
 <template>
