@@ -27,9 +27,14 @@ const totalCost = ref(0);
 const changeTotalCost = () => {
   setTimeout(() => {
     let cart = JSON.parse(localStorage.getItem("cart"));
-    totalCost.value = cart.reduce((acc, item) => {
-      return acc + Number(item.cost) * Number(item.count);
-    }, 0);
+    if (cart.length == 0) {
+      totalCost.value = 0
+    } else {
+      totalCost.value = cart.reduce((acc, item) => {
+        return acc + Number(item.cost) * Number(item.count);
+      }, 0);
+    }
+
   }, 200);
 };
 
@@ -55,12 +60,8 @@ const removeItemHandler = (id) => {
         <h1 class="text-center text-xl">Mój koszyk</h1>
         <article v-for="item in cartItems">
           <ImageBorder v-if="item.visible">
-            <CartItem
-              :id="item.id"
-              :count="item.count"
-              @count-change="countChange"
-              @remove="removeItemHandler(item.id)"
-            ></CartItem>
+            <CartItem :id="item.id" :count="item.count" @count-change="countChange"
+              @remove="removeItemHandler(item.id)"></CartItem>
           </ImageBorder>
         </article>
         <Accordion class="w-full pt-2">
