@@ -19,7 +19,7 @@ const getProduct = async () => {
       `${import.meta.env.VITE_BACKEND_URL}/api/products/${route.params.id}`
     );
     if (response.status === 200) product.value = response.data;
-  } catch (error) {}
+  } catch (error) { }
 };
 const sendedCorrectly = ref();
 const numberItems = ref(null);
@@ -61,9 +61,7 @@ const addToCart = () => {
 </script>
 <template>
   <div>
-    <div
-      class="flex flex-col w-full justify-center lg:flex-row animate-coming-right"
-    >
+    <div class="flex flex-col w-full justify-center lg:flex-row animate-coming-right">
       <ImageBorder class="lg:flex-1 lg:max-w-[30%]">
         <img :src="product.image" alt="" />
       </ImageBorder>
@@ -71,23 +69,10 @@ const addToCart = () => {
         <div>{{ product.name }}</div>
         <div>{{ product.cost }}</div>
         <p>Sztuk *</p>
-        <InputNumber
-          v-model="numberItems"
-          inputId="minmax-buttons"
-          mode="decimal"
-          showButtons
-          min="1"
-          fluid
-        />
+        <InputNumber v-model="numberItems" inputId="minmax-buttons" mode="decimal" showButtons min="1" fluid />
         <Button label="Dodaj do koszyka" @click="addToCart()"></Button>
-        <Message
-          severity="success"
-          :life="2000"
-          v-if="sendedCorrectly === true"
-          @life-end="resetSendedCorrectly"
-        >
-          Dodano do koszyka</Message
-        >
+        <Message severity="success" :life="2000" v-if="sendedCorrectly === true" @life-end="resetSendedCorrectly">
+          Dodano do koszyka</Message>
         <Accordion>
           <AccordionPanel>
             <AccordionHeader>Dane wysyłki</AccordionHeader>

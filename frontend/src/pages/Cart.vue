@@ -1,4 +1,5 @@
 <script setup>
+import axios from "axios";
 import CartItem from "@/components/CartItem.vue";
 import Button from "primevue/button";
 import FloatLabel from "primevue/floatlabel";
@@ -10,7 +11,7 @@ import AccordionHeader from "primevue/accordionheader";
 import AccordionContent from "primevue/accordioncontent";
 import ImageBorder from "@/components/ImageBorder.vue";
 import { computed, ref } from "vue";
-const childValues = ref([]);
+
 const cartItems = ref();
 const getCart = () => {
   if (localStorage.getItem("cart")) {
@@ -53,6 +54,19 @@ const removeItemHandler = (id) => {
   });
   changeTotalCost()
 };
+
+const sendOrder = async () => {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  let order = cart.map(element => {
+    return { product_id: element.id, quantity: element.count }
+  })
+  order = {
+    items: order
+  }
+  const stripe = await axios.post('http://localhost:8000/api/create-checkout-session', order, { withCredentials: true, withXSRFToken: true })
+  window.location.href = stripe.data.url
+}
+
 </script>
 <template>
   <div class="lg:flex flex-col justify-center lg:w-[50%] mx-auto">
@@ -95,7 +109,7 @@ const removeItemHandler = (id) => {
           <p class="w-1/2 text-right">{{ totalCost }} zł</p>
         </div>
         <div>
-          <Button label="Zamówienie" class="w-full"></Button>
+          <Button label="Zamówienie" @click="sendOrder" class="w-full"></Button>
         </div>
       </ImageBorder>
     </section>

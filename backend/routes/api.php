@@ -33,6 +33,5 @@ Route::middleware('web')->group(function () {
 });
 
 
-Route::middleware('auth:sanctum-user')->post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession']);
-
-Route::post('/stripe/webhook', [PaymentWebhookController::class, 'handleWebhook']);
+Route::middleware('web')->post('/create-checkout-session', [PaymentController::class, 'createCheckoutSession']);
+Route::post('/webhook', [PaymentWebhookController::class, 'handleWebhook']);
