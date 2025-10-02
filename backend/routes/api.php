@@ -30,6 +30,8 @@ Route::middleware('web')->group(function () {
     Route::post('users/create', [UserController::class, 'store']);
     Route::post('users/login', [UserController::class, 'show']);
     Route::post('/users/logout', [UserController::class, 'logout']);
+    Route::post('users/is-loged', [UserController::class, 'isLoged']);
+    Route::post('users/orders', [UserController::class, 'orders']);
 });
 
 

@@ -8,7 +8,9 @@ use Stripe\Stripe;
 use App\Models\Product;
 use App\DTO\Product as ProductDTO;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 function validateExistingProducts($products)
 {
@@ -67,7 +69,12 @@ class PaymentController extends Controller
                 ]);
                 if ($session) {
                     $user = $request->user();
-                    Order::create(['user_id' => $user->id, 'session_id' => $session->id, 'amount' => $session->amount_total, 'currency' => $session->currency, 'payment_status' => $session->payment_status, 'items' => formatItemsDB($request->items)]);
+                    $order =  Order::create(['user_id' => $user->id, 'session_id' => $session->id, 'amount' => $session->amount_total, 'currency' => $session->currency, 'payment_status' => $session->payment_status]);
+                    foreach ($request->items as $item) {
+                        $product = Product::find($item['product_id']);
+                        Log::info($product);
+                        OrderItem::create(['order_id' => $order->id, 'product_id' => $item['product_id'], 'quantity' => $item['quantity'], 'product_price' => $product->cost]);
+                    }
                 }
                 return response()->json([
                     'id' => $session->id,

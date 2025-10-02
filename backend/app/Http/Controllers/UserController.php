@@ -65,4 +65,21 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request, User $user) {}
+    public function isLoged(Request $request)
+    {
+        $user = $request->user();
+        if ($user) {
+            return ['isUser' => true];
+        } else {
+            return ['isUser' => false];
+        }
+    }
+    public function orders(Request $request)
+    {
+        $user = $request->user();
+        if ($user) {
+            $response = $user->orders()->get();
+            return ['response' => $response];
+        }
+    }
 }
