@@ -27,6 +27,11 @@ export const items = ref([
     name: "products",
   },
   {
+    label: "Konto",
+    route: "konto-uzytkownika",
+    name: "user",
+  },
+  {
     label: "Kontakt",
     route: "contact",
     name: "contact",

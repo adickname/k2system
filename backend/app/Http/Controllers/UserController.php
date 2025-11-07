@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,8 +80,16 @@ class UserController extends Controller
     {
         $user = $request->user();
         if ($user) {
-            $response = $user->orders()->get();
-            return ['response' => $response];
+            $orders = $user->orders()->get();
+            foreach ($orders as $order) {
+                $order->load(['orderItems.product' => function ($query) {
+                    $query->select('id', 'name', 'image');
+                }]);
+                foreach ($order->orderItems as $item) {
+                    $item->makeHidden(['created_at', 'updated_at', 'id', 'order_id', 'product_id']);
+                }
+            }
+            return ['response' => $orders];
         }
     }
 }

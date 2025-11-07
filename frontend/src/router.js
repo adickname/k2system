@@ -48,6 +48,11 @@ const router = createRouter({
       },
     },
     {
+      path: "/konto-uzytkownika",
+      component: () => import("./pages/UserAccount.vue"),
+      name: "user",
+    },
+    {
       path: "/contact",
       component: () => import("./pages/Contact.vue"),
       name: "contact",
@@ -67,7 +72,6 @@ const router = createRouter({
       component: () => import("./pages/UserLogin.vue"),
       name: "login",
     },
-
     {
       path: "/404-product",
       component: () => import("@/pages/404Page.vue"),
