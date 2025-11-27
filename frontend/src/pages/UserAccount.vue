@@ -27,19 +27,12 @@ watchEffect(() => {
     }
 
 })
-
-const checkIsLoged = async () => {
-    const response = await axios.post(
-        'http://localhost:8000/api/users/is-loged', {},
-        {
-            withCredentials: true, withXSRFToken: true
-        }
-    );
-    isLoged.value = response.data.isUser
-    if (isLoged.value) {
+watch(isLoged, (newValue, oldValue) => {
+    if (newValue) {
         getOrders()
     }
-};
+})
+
 const getOrders = async () => {
     const response = await axios.post(
         'http://localhost:8000/api/users/orders', {},
@@ -56,7 +49,6 @@ const showLess = (index) => {
     orders.value[index].rowToDisplay -= 1
 }
 onMounted(() => {
-    checkIsLoged()
     width.value = window.innerWidth
     addEventListener('resize', () => {
         width.value = window.innerWidth
