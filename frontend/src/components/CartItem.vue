@@ -8,16 +8,25 @@ const product = ref();
 const totalCost = computed(() => count.value * product.value.cost);
 const emit = defineEmits(["count-change", "remove"]);
 const getProduct = async () => {
-  const response = await axios.get(
-    `${import.meta.env.VITE_BACKEND_URL}/api/products/${props.id}`
-  );
-  product.value = response.data;
-  const item = {
-    id: props.id,
-    count: count.value,
-    cost: product.value.cost,
-  };
-  emit("count-change", JSON.stringify(item));
+  try {
+
+    const response = await axios.get(
+      `${import.meta.env.VITE_BACKEND_URL}/api/products/${props.id}`
+    );
+
+    product.value = response.data;
+    const item = {
+      id: props.id,
+      count: count.value,
+      cost: product.value.cost,
+    };
+    emit("count-change", JSON.stringify(item));
+  } catch (error) {
+    if (error.status == 404) {
+      removeItem()
+    }
+  }
+
 };
 getProduct();
 
