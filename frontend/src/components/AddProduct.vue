@@ -55,7 +55,7 @@ const removeFile = () => {
 };
 </script>
 <template>
-  <div class="">
+  <div class="w-full">
     <p>Name</p>
     <Textarea v-model="name" cols="50"></Textarea>
     <p>Image</p>
@@ -75,7 +75,7 @@ const removeFile = () => {
     <p>Opis</p>
     <Textarea v-model="description" rows="5" cols="50" />
   </div>
-  <div>
+  <div class="w-full">
     <Button @click="addProduct()">Dodaj</Button>
   </div>
   <Message severity="success" :life="2000" v-if="sendedCorrectly === true" @life-end="resetSendedCorrectly">Wysłano

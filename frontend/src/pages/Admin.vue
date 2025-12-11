@@ -38,7 +38,7 @@ const backendUrlLogout = `${import.meta.env.VITE_BACKEND_URL}/api/logout`;
     <Button @click="getProducts()">Odśwież</Button>
   </div>
   <div>
-    <ImageBorder class="w-[40%]">
+    <ImageBorder class="lg:w-[40%]">
       <AddProduct></AddProduct>
     </ImageBorder>
   </div>
