@@ -38,7 +38,7 @@ watch(isLoged.value, (newValue, oldValue) => {
 
 const getOrders = async () => {
     const response = await axios.post(
-        'http://localhost:8000/api/users/orders', {},
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/orders`, {},
         {
             withCredentials: true, withXSRFToken: true
         }

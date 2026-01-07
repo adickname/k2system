@@ -7,8 +7,8 @@ import axios from "axios";
 import { useIsLoged } from "@/composables/useIsLoged.vue";
 const { isLoged } = useIsLoged()
 onMounted(async () => {
-  axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true }).then(async () => {
-    const res = await axios.post('http://localhost:8000/api/users/is-loged', {}, { withCredentials: true, withXSRFToken: true })
+  axios.get(`${import.meta.env.VITE_BACKEND_URL}/sanctum/csrf-cookie`, { withCredentials: true }).then(async () => {
+    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/users/is-loged`, {}, { withCredentials: true, withXSRFToken: true })
     if (res.data.isUser) {
       isLoged.value = true
     }

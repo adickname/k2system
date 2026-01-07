@@ -63,7 +63,7 @@ const sendOrder = async () => {
   order = {
     items: order
   }
-  const stripe = await axios.post('http://localhost:8000/api/create-checkout-session', order, { withCredentials: true, withXSRFToken: true })
+  const stripe = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/create-checkout-session`, order, { withCredentials: true, withXSRFToken: true })
   window.location.href = stripe.data.url
 }
 

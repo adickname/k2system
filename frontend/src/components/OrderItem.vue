@@ -8,7 +8,7 @@ const item = defineProps(['name', 'image', 'quantity', 'price'])
 <template>
     <Accordion>
         <AccordionPanel>
-            <AccordionHeader>{{ item.name }} <img :src="`http://localhost:8000${item.image}`" alt=""
+            <AccordionHeader>{{ item.name }} <img :src="`${import.meta.env.VITE_BACKEND_URL}${item.image}`" alt=""
                     class="ml-4 mr-4 h-[100px]">
             </AccordionHeader>
             <AccordionContent>
