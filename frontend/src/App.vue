@@ -4,8 +4,16 @@ import Nav from "./components/Nav.vue";
 import Footer from "./components/Footer.vue";
 import { onMounted } from "vue";
 import axios from "axios";
-onMounted(() => {
-  axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true });
+import { useIsLoged } from "@/composables/useIsLoged.vue";
+const { isLoged } = useIsLoged()
+onMounted(async () => {
+  axios.get('http://localhost:8000/sanctum/csrf-cookie', { withCredentials: true }).then(async () => {
+    const res = await axios.post('http://localhost:8000/api/users/is-loged', {}, { withCredentials: true, withXSRFToken: true })
+    if (res.data.isUser) {
+      isLoged.value = true
+    }
+  })
+
 })
 </script>
 
