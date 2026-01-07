@@ -64,7 +64,7 @@ const router = createRouter({
     },
     {
       path: "/admin",
-      component: () => import("@/pages/Admin.vue"),
+      component: () => import("./pages/Admin.vue"),
       name: "admin",
     },
     {
@@ -73,13 +73,18 @@ const router = createRouter({
       name: "login",
     },
     {
+      path: "/status-platnosci",
+      component: () => import("./pages/StatusPayment.vue"),
+      name: "payment-status",
+    },
+    {
       path: "/404-product",
-      component: () => import("@/pages/404Page.vue"),
+      component: () => import("./pages/404Page.vue"),
       name: "404-product",
     },
     {
       path: "/:notFound",
-      component: () => import("@/pages/404Page.vue"),
+      component: () => import("./pages/404Page.vue"),
       name: "404",
     },
   ],
