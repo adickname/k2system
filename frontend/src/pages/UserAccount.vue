@@ -11,26 +11,29 @@ const width = ref()
 const ordersToShow = ref([])
 let isExpandAdded = false
 watchEffect(() => {
-    if (orders.value.length > 0) {
-        if (!isExpandAdded) {
-            orders.value = orders.value.map(e => ({
+    if (isLoged.value) {
+        if (orders.value.length > 0) {
+            if (!isExpandAdded) {
+                orders.value = orders.value.map(e => ({
+                    ...e,
+                    rowToDisplay: 1
+                }))
+                isExpandAdded = !isExpandAdded
+            }
+            const amount = (width.value / 250 - 1)
+            ordersToShow.value = (orders.value.map(e => ({
                 ...e,
-                rowToDisplay: 1
-            }))
-            isExpandAdded = !isExpandAdded
+                order_items: e.order_items.slice(0, amount * e.rowToDisplay)
+            })))
         }
-        const amount = (width.value / 250 - 1)
-        ordersToShow.value = (orders.value.map(e => ({
-            ...e,
-            order_items: e.order_items.slice(0, amount * e.rowToDisplay)
-        })))
+    } else {
+        ordersToShow.value = []
     }
 
+
 })
-watch(isLoged, (newValue, oldValue) => {
-    if (newValue) {
-        getOrders()
-    }
+watch(isLoged.value, (newValue, oldValue) => {
+    getOrders()
 })
 
 const getOrders = async () => {
@@ -53,12 +56,17 @@ onMounted(() => {
     addEventListener('resize', () => {
         width.value = window.innerWidth
     })
+    if (isLoged) {
+        getOrders()
+    }
+
 })
 </script>
 
 <template>
     <UserLogin />
     <p>Twoje zamówienia:</p>
+
     <div>
         <ImageBorder v-for="(order, index) in ordersToShow" class="flex-row w-[fit-content] items-start flex-wrap">
 
