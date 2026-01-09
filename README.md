@@ -13,6 +13,7 @@ Project was developed for learning purposes
 - Axios
 - Laravel Cashier
 - Laravel Sanctum
+- MySQL
 
 ## Authentication & Roles
 - User
